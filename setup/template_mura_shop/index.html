@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MURA — Thời Trang Hiện Đại</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/customscreen.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <a href="#" class="logo">MURA</a>
+      <nav>
+        <a href="#">Bộ sưu tập</a>
+        <a href="#">Mới nhất</a>
+        <a href="#">Sale</a>
+        <a href="#">Về chúng tôi</a>
+      </nav>
+      <div class="header-icons">
+        <button class="icon-btn" aria-label="Tìm kiếm">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m16.5 16.5 3.5 3.5" />
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Yêu thích">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+        </button>
+        <button
+          class="icon-btn"
+          aria-label="Giỏ hàng"
+          style="position: relative"
+        >
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-count">3</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-badge">Bộ sưu tập Thu — Đông 2025</p>
+        <h1 class="hero-title">Phong cách<br /><em>vượt thời gian</em></h1>
+        <p class="hero-desc">
+          Những thiết kế tối giản, tinh tế được tạo ra từ những chất liệu cao
+          cấp. Thời trang không chỉ là quần áo — đó là ngôn ngữ của bạn.
+        </p>
+        <a href="#products" class="hero-cta">
+          Khám phá ngay
+          <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="hero-right">
+        <div class="hero-img-placeholder">
+          <!-- Replace with actual product image -->
+          <div class="silhouette"></div>
+        </div>
+        <div class="hero-scroll">Cuộn xuống</div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-inner">
+        <span>Miễn phí vận chuyển toàn quốc</span><span class="dot">✦</span>
+        <span>Đổi trả dễ dàng trong 30 ngày</span><span class="dot">✦</span>
+        <span>Chất liệu cao cấp bền vững</span><span class="dot">✦</span>
+        <span>Thiết kế độc quyền</span><span class="dot">✦</span>
+        <span>Miễn phí vận chuyển toàn quốc</span><span class="dot">✦</span>
+        <span>Đổi trả dễ dàng trong 30 ngày</span><span class="dot">✦</span>
+        <span>Chất liệu cao cấp bền vững</span><span class="dot">✦</span>
+        <span>Thiết kế độc quyền</span><span class="dot">✦</span>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Mới nhất</p>
+          <h2 class="section-title">Sản phẩm <em>nổi bật</em></h2>
+        </div>
+        <a href="#" class="view-all">Xem tất cả →</a>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-img c1">
+            <div class="product-img-bg">
+              <div
+                class="product-shape"
+                style="
+                  width: 110px;
+                  height: 180px;
+                  background: #c8c4bc;
+                  border-radius: 60px 60px 20px 20px;
+                "
+              ></div>
+            </div>
+            <span class="product-badge">Mới</span>
+            <div class="product-overlay">
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-tag">Áo khoác</p>
+            <p class="product-name">Coat Cashmere Trench</p>
+            <div class="product-price">
+              <span class="price-current">2.890.000₫</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-img c2">
+            <div class="product-img-bg">
+              <div
+                class="product-shape"
+                style="
+                  width: 90px;
+                  height: 160px;
+                  background: #b8c4b8;
+                  border-radius: 8px;
+                "
+              ></div>
+            </div>
+            <span class="product-badge sale">−20%</span>
+            <div class="product-overlay">
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-tag">Váy</p>
+            <p class="product-name">Midi Slip Dress Lụa</p>
+            <div class="product-price">
+              <span class="price-current">1.560.000₫</span>
+              <span class="price-original">1.950.000₫</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-img c3">
+            <div class="product-img-bg">
+              <div
+                class="product-shape"
+                style="
+                  width: 100px;
+                  height: 130px;
+                  background: #c4b8c4;
+                  border-radius: 50% 50% 8px 8px;
+                "
+              ></div>
+            </div>
+            <div class="product-overlay">
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-tag">Áo</p>
+            <p class="product-name">Oversized Blazer</p>
+            <div class="product-price">
+              <span class="price-current">1.890.000₫</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-img c4">
+            <div class="product-img-bg">
+              <div
+                class="product-shape"
+                style="
+                  width: 80px;
+                  height: 140px;
+                  background: #bcbcb0;
+                  border-radius: 40px;
+                "
+              ></div>
+            </div>
+            <span class="product-badge">Hot</span>
+            <div class="product-overlay">
+              <button class="add-to-cart">Thêm vào giỏ</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-tag">Phụ kiện</p>
+            <p class="product-name">Túi Tote Canvas</p>
+            <div class="product-price">
+              <span class="price-current">890.000₫</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTION BANNER -->
+    <div class="collection-banner">
+      <div class="collection-img">
+        <div class="pattern"></div>
+        <div
+          style="
+            width: 140px;
+            height: 280px;
+            background: #c0bcb5;
+            border-radius: 80px;
+            position: relative;
+            z-index: 1;
+          "
+        ></div>
+      </div>
+      <div class="collection-text">
+        <p class="section-label">Bộ sưu tập đặc biệt</p>
+        <h3 class="collection-title">Essentials — Nền tảng cho mọi tủ đồ</h3>
+        <p>
+          Những món đồ cơ bản được may đo tỉ mỉ từ chất liệu hữu cơ, thiết kế để
+          mặc cả mùa và phối được với mọi outfit.
+        </p>
+        <a href="#" class="btn-outline">Khám phá bộ sưu tập</a>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+        <p class="feature-title">Miễn phí vận chuyển</p>
+        <p class="feature-desc">
+          Giao hàng toàn quốc miễn phí cho đơn từ 500.000₫
+        </p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20 9V7a2 2 0 0 0-2-2h-1M20 9H4M20 9l-2 9H6L4 9m4-4H7a2 2 0 0 0-2 2v2"
+            />
+            <circle cx="9" cy="19" r="1" />
+            <circle cx="15" cy="19" r="1" />
+          </svg>
+        </div>
+        <p class="feature-title">Đổi trả 30 ngày</p>
+        <p class="feature-desc">
+          Không hài lòng? Đổi trả miễn phí trong vòng 30 ngày
+        </p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <p class="feature-title">Thanh toán bảo mật</p>
+        <p class="feature-desc">Mã hóa SSL 256-bit đảm bảo thông tin của bạn</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+        </div>
+        <p class="feature-title">Chất liệu bền vững</p>
+        <p class="feature-desc">100% vật liệu hữu cơ, thân thiện môi trường</p>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <div class="section-header" style="padding: 0 0 40px">
+        <div>
+          <p class="section-label">Đánh giá</p>
+          <h2 class="section-title">Khách hàng <em>nói gì</em></h2>
+        </div>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Chất vải mượt hơn tôi nghĩ rất nhiều. Đặt lần đầu đã trở thành
+            khách quen."
+          </p>
+          <p class="testimonial-author">Nguyễn Minh Anh — Hà Nội</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Thiết kế tối giản nhưng rất tinh tế. Mặc đi làm hay đi chơi đều
+            đẹp."
+          </p>
+          <p class="testimonial-author">Trần Linh Chi — TP. HCM</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★☆</div>
+          <p class="testimonial-text">
+            "Giao hàng nhanh, đóng gói cẩn thận. Sản phẩm đúng như mô tả, rất
+            hài lòng."
+          </p>
+          <p class="testimonial-author">Phạm Thu Hà — Đà Nẵng</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter">
+      <div class="newsletter-left">
+        <p class="section-label">Đăng ký nhận tin</p>
+        <h3 class="newsletter-title">
+          Đón đầu xu hướng<br /><em>cùng MURA</em>
+        </h3>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Địa chỉ email của bạn" />
+        <button type="button">Đăng ký ngay</button>
+        <p class="newsletter-note">
+          Chúng tôi không gửi spam. Hủy đăng ký bất kỳ lúc nào.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">MURA</a>
+          <p>
+            Thương hiệu thời trang tối giản Việt Nam. Chúng tôi tin rằng phong
+            cách thực sự đến từ sự tinh tế và bền vững.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#">Áo</a></li>
+            <li><a href="#">Quần</a></li>
+            <li><a href="#">Váy</a></li>
+            <li><a href="#">Phụ kiện</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="#">Hướng dẫn chọn size</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Theo dõi đơn hàng</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Công ty</h4>
+          <ul>
+            <li><a href="#">Về chúng tôi</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Bền vững</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MURA. Bảo lưu mọi quyền.</p>
+        <div class="social-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/customstart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MURA — Danh Sách Sản Phẩm</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/products.css" />
+  </head>
+  <body>
+    <header>
+      <a href="shop-template.html" class="logo">MURA</a>
+      <nav>
+        <a href="mura-products.html" class="active">Bộ sưu tập</a>
+        <a href="#">Mới nhất</a>
+        <a href="#">Sale</a>
+        <a href="#">Về chúng tôi</a>
+      </nav>
+      <div class="header-icons">
+        <button class="icon-btn">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m16.5 16.5 3.5 3.5" />
+          </svg>
+        </button>
+        <button class="icon-btn">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+        </button>
+        <a href="mura-cart.html" class="icon-btn" style="position: relative">
+          <svg
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-count">3</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="breadcrumb">
+      <a href="shop-template.html">Trang chủ</a>
+      <span>›</span>
+      <span style="color: var(--black)">Bộ sưu tập</span>
+    </div>
+
+    <div class="page-header">
+      <div class="page-header-left">
+        <p class="label">Bộ sưu tập</p>
+        <h1 class="page-title">Tất cả <em>sản phẩm</em></h1>
+        <p class="product-count">Hiển thị 12 / 48 sản phẩm</p>
+      </div>
+      <div class="page-header-right">
+        <button class="filter-clear" onclick="clearFilters()">
+          Xóa bộ lọc
+        </button>
+        <select class="sort-select">
+          <option>Mới nhất</option>
+          <option>Giá: Thấp → Cao</option>
+          <option>Giá: Cao → Thấp</option>
+          <option>Phổ biến nhất</option>
+          <option>Đánh giá cao nhất</option>
+        </select>
+        <div class="view-toggle">
+          <button
+            class="view-btn active"
+            id="grid-btn"
+            onclick="setView('grid')"
+            title="Lưới"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+            </svg>
+          </button>
+          <button
+            class="view-btn"
+            id="list-btn"
+            onclick="setView('list')"
+            title="Danh sách"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="filter-section">
+          <div class="filter-title">
+            Danh mục
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" checked /> Áo khoác</label
+            ><span class="filter-count">12</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Váy & Chân váy</label
+            ><span class="filter-count">8</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Áo blouse</label
+            ><span class="filter-count">10</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Quần</label
+            ><span class="filter-count">9</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Phụ kiện</label
+            ><span class="filter-count">9</span>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">
+            Khoảng giá
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="price-range">
+            <div class="price-inputs">
+              <input
+                type="text"
+                class="price-input"
+                placeholder="500.000₫"
+                value="500.000₫"
+              />
+              <span class="price-sep">—</span>
+              <input
+                type="text"
+                class="price-input"
+                placeholder="5.000.000₫"
+                value="5.000.000₫"
+              />
+            </div>
+            <button
+              style="
+                background: var(--black);
+                color: var(--white);
+                border: none;
+                font-family: var(--sans);
+                font-size: 11px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                padding: 10px 20px;
+                cursor: pointer;
+                width: 100%;
+                font-weight: 500;
+              "
+            >
+              Áp dụng
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">
+            Màu sắc
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="color-options">
+            <div
+              class="color-swatch active"
+              style="background: #111110"
+              title="Đen"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #faf9f7; border: 1px solid #c8c4bc"
+              title="Trắng"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #c8c4bc"
+              title="Xám nhạt"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #b89c6e"
+              title="Vàng camel"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #7a6a5a"
+              title="Nâu"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #8b9e8b"
+              title="Xanh rêu"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #8a8880"
+              title="Xám"
+            ></div>
+            <div
+              class="color-swatch"
+              style="background: #c4a59a"
+              title="Hồng nude"
+            ></div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">
+            Kích cỡ
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="size-options">
+            <button class="size-btn">XS</button>
+            <button class="size-btn active">S</button>
+            <button class="size-btn active">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+            <button class="size-btn">XXL</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">
+            Chất liệu
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" checked /> Lụa</label
+            ><span class="filter-count">7</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Cashmere</label
+            ><span class="filter-count">5</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Cotton hữu cơ</label
+            ><span class="filter-count">14</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Len Merino</label
+            ><span class="filter-count">8</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" /> Vải lanh</label
+            ><span class="filter-count">9</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PRODUCTS AREA -->
+      <div class="products-area">
+        <div class="active-filters">
+          <span
+            style="
+              font-size: 12px;
+              color: var(--muted);
+              letter-spacing: 0.05em;
+              text-transform: uppercase;
+            "
+            >Lọc:</span
+          >
+          <span class="filter-tag"
+            >Áo khoác
+            <button onclick="this.parentElement.remove()">×</button></span
+          >
+          <span class="filter-tag"
+            >S, M <button onclick="this.parentElement.remove()">×</button></span
+          >
+          <span class="filter-tag"
+            >Lụa <button onclick="this.parentElement.remove()">×</button></span
+          >
+        </div>
+
+        <div class="product-grid" id="productGrid">
+          <!-- Card 1 -->
+          <div class="product-card">
+            <div class="product-img bg-c1">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 110px;
+                    height: 180px;
+                    background: #c8c4bc;
+                    border-radius: 60px 60px 20px 20px;
+                  "
+                ></div>
+              </div>
+              <span class="product-badge new">Mới</span>
+              <button class="wish-btn">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Áo khoác</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Cashmere Trench Coat</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Áo khoác dáng dài từ cashmere nguyên chất, phiên bản giới hạn.
+              </p>
+              <div class="product-price">
+                <span class="price-current">2.890.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="product-card">
+            <div class="product-img bg-c2">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 90px;
+                    height: 160px;
+                    background: #b8c4b8;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <span class="product-badge sale">−20%</span>
+              <button class="wish-btn active">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Váy</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Midi Slip Dress Lụa</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Váy lụa dáng midi tôn dáng, chất liệu mềm mại tự nhiên.
+              </p>
+              <div class="product-price">
+                <span class="price-current">1.560.000₫</span
+                ><span class="price-original">1.950.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="product-card">
+            <div class="product-img bg-c3">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 100px;
+                    height: 130px;
+                    background: #c4b8c4;
+                    border-radius: 50% 50% 8px 8px;
+                  "
+                ></div>
+              </div>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Áo</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Oversized Linen Blazer</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Blazer vải lanh dáng oversized hiện đại, phù hợp cả đi làm lẫn
+                dạo phố.
+              </p>
+              <div class="product-price">
+                <span class="price-current">1.890.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="product-card">
+            <div class="product-img bg-c4">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 80px;
+                    height: 140px;
+                    background: #bcbcb0;
+                    border-radius: 40px;
+                  "
+                ></div>
+              </div>
+              <span class="product-badge">Hot</span>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Phụ kiện</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Túi Tote Canvas Thủ Công</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Túi tote từ canvas hữu cơ, thiết kế đơn giản nhưng đẳng cấp.
+              </p>
+              <div class="product-price">
+                <span class="price-current">890.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="product-card">
+            <div class="product-img bg-c5">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 95px;
+                    height: 155px;
+                    background: #c4b8ac;
+                    border-radius: 10px 10px 40px 40px;
+                  "
+                ></div>
+              </div>
+              <span class="product-badge new">Mới</span>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Áo</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Silk Wrap Blouse</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Áo lụa kiểu wrap tinh tế, thích hợp đi tiệc hoặc công sở.
+              </p>
+              <div class="product-price">
+                <span class="price-current">1.290.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="product-card">
+            <div class="product-img bg-c6">
+              <div class="product-img-bg">
+                <div
+                  style="
+                    width: 85px;
+                    height: 145px;
+                    background: #acb8c0;
+                    border-radius: 20px;
+                  "
+                ></div>
+              </div>
+              <span class="product-badge sale">−15%</span>
+              <div class="product-overlay">
+                <button
+                  class="overlay-btn"
+                  onclick="window.location = 'mura-product-detail.html'"
+                >
+                  Xem nhanh
+                </button>
+                <button class="overlay-btn">+ Giỏ hàng</button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-tag">Quần</p>
+              <p class="product-name">
+                <a
+                  href="mura-product-detail.html"
+                  style="text-decoration: none; color: inherit"
+                  >Wide-Leg Wool Trousers</a
+                >
+              </p>
+              <p class="product-desc-short">
+                Quần len ống rộng sang trọng, form dáng chuẩn Châu Âu.
+              </p>
+              <div class="product-price">
+                <span class="price-current">1.615.000₫</span
+                ><span class="price-original">1.900.000₫</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end grid -->
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+          <button class="page-btn prev-next">← Trước</button>
+          <a href="#" class="page-btn active">1</a>
+          <a href="#" class="page-btn">2</a>
+          <a href="#" class="page-btn">3</a>
+          <span style="color: var(--stone); padding: 0 8px">…</span>
+          <a href="#" class="page-btn">8</a>
+          <button class="page-btn prev-next">Sau →</button>
+        </div>
+      </div>
+      <!-- end products-area -->
+    </div>
+    <!-- end shop-layout -->
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="shop-template.html" class="logo">MURA</a>
+          <p>
+            Thương hiệu thời trang tối giản Việt Nam. Chúng tôi tin rằng phong
+            cách thực sự đến từ sự tinh tế và bền vững.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#">Áo</a></li>
+            <li><a href="#">Quần</a></li>
+            <li><a href="#">Váy</a></li>
+            <li><a href="#">Phụ kiện</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="#">Hướng dẫn size</a></li>
+            <li><a href="#">Đổi trả</a></li>
+            <li><a href="#">Theo dõi đơn</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Công ty</h4>
+          <ul>
+            <li><a href="#">Về chúng tôi</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Bền vững</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MURA. Bảo lưu mọi quyền.</p>
+        <div class="social-links">
+          <a href="#">Instagram</a><a href="#">Facebook</a
+          ><a href="#">TikTok</a>
+        </div>
+      </div>
+    </footer>    
+    <script src="assets/js/products.js"></script>
+  </body>
+</html>
