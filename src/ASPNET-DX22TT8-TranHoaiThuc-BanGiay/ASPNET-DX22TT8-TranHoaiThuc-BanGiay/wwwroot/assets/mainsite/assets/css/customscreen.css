@@ -1,0 +1,109 @@
+﻿/* Loại bỏ gạch chân mặc định của thẻ a */
+.cart-header-link {
+    text-decoration: none;
+}
+
+/* Định hình Button chứa cả Icon và Text */
+.icon-btn-text {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center; /* Căn giữa tất cả thành phần theo chiều dọc */
+    gap: 6px; /* Khoảng cách giữa icon, chữ và số */
+    font-size: 14px;
+    font-weight: 500;
+    color: #333; /* Màu chữ và icon */
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+    /* Hiệu ứng đổi màu nhẹ khi di chuột vào nút giỏ hàng */
+    .icon-btn-text:hover {
+        background-color: #f5f5f5;
+        color: #000;
+    }
+
+/* Định hình số lượng sản phẩm nằm trong vòng tròn nhỏ */
+.cart-count-badge {
+    background-color: #ff4d4f; /* Màu nền đỏ nổi bật */
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 10px; /* Bo tròn góc tạo hình kẹo thuốc */
+    padding: 1px 6px;
+    min-width: 12px;
+    text-align: center;
+    line-height: 1.2;
+    display: inline-block;
+}
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.payment-card {
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.15s;
+}
+
+    .payment-card.selected {
+        border: 2px solid #1D9E75;
+        background: #f0faf6;
+    }
+
+.payment-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .payment-icon.cod {
+        background: #FFF3E0;
+    }
+
+    .payment-icon.vnpay {
+        background: #E3F2FD;
+    }
+
+.payment-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.payment-desc {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+}
+
+.payment-note {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    align-items: center;
+    gap: 8px;
+}
+
+.cod-note {
+    background: #FFF3E0;
+    color: #854F0B;
+}
+
+.vnpay-note {
+    background: #E3F2FD;
+    color: #185FA5;
+}

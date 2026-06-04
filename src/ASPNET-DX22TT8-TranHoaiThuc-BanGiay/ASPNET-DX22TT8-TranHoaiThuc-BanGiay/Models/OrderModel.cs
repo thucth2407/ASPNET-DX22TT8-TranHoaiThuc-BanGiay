@@ -15,6 +15,7 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models
         public int? Status { get; set; }        
         public decimal Total { get; set; } // Tổng tiền        
         public DateTime Created_at { get; set; } = DateTime.Now;
+        public decimal? Discount { get; set; }
 
         // Chi tiết đơn hàng
         public virtual ICollection<OrderDetailModel>? OrderDetails { get; set; }

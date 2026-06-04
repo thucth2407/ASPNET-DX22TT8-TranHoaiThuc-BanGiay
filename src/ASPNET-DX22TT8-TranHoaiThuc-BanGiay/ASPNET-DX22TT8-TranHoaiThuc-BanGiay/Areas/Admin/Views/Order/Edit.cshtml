@@ -1,6 +1,7 @@
 ﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.OrderModel
 @{
     ViewData["Title"] = "Edit Order Admin";    
+    ViewData["total"] = Model.Total + (Model.Discount ?? 0m);
 }
 
 <main class="dashboard-content">
@@ -20,7 +21,7 @@
             <div class="col-12 col-xl-12">
                 <form class="panel needs-validation" novalidate asp-action="Edit" method="post" enctype="multipart/form-data">
                     <div class="row g-3">
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label class="form-label" for="formCode">Mã đơn</label>
                             <input type="text" class="form-control" value="@Model.OrderId" readonly />
                             <input type="hidden" asp-for="OrderId" />
@@ -37,8 +38,16 @@
                             <label class="form-label" for="formPhone">Số điện thoại</label>
                             <input class="form-control" id="formPhone" type="text" asp-for="Phone" />
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="form-label" for="formTotal">Tổng tiền</label>
+                            <input class="form-control" id="formTotal" type="text" value="@ViewData["total"]" readonly />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="formTotal">Số tiền được giảm</label>
+                            <input class="form-control" id="formTotal" type="text" asp-for="Discount" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="formTotal">Thành tiền</label>
                             <input class="form-control" id="formTotal" type="text" asp-for="Total" />
                         </div>
                         <div class="col-md-6">

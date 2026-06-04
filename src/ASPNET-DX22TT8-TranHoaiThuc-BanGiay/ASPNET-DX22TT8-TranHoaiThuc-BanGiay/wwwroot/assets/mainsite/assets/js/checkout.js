@@ -54,7 +54,3 @@ function closeModal() {
   btn.disabled = false;
 }
 
-/* Close modal on overlay click */
-document.getElementById("successModal").addEventListener("click", function (e) {
-  if (e.target === this) closeModal();
-});

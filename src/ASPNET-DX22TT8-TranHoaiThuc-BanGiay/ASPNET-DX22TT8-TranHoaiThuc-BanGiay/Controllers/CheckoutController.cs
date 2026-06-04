@@ -22,23 +22,29 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Controllers
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartModel>>("cart");
 
-            // Nếu giỏ hàng trống thì redirect về cart
             if (cart == null || !cart.Any())
                 return RedirectToAction("Index", "Cart");
 
-            Decimal subtotal = cart.Sum(i => i.Price * i.Quantity);
-            Decimal total = subtotal;
-            int countItem = cart.Count;
+            decimal subTotal = cart.Sum(i => i.Price * i.Quantity);
+            decimal discountAmt = HttpContext.Session.GetDecimal("CouponDiscountAmount");   // đọc từ Session
+            string? appliedCode = HttpContext.Session.GetString("AppliedCouponCode") ?? "";
+            decimal total = Math.Max(0, subTotal - discountAmt);
 
-            ViewData["SubTotal"] = subtotal.ToString("#,0");
+            ViewData["SubTotal"] = subTotal.ToString("#,0");
+            ViewData["DiscountAmount"] = discountAmt;    // decimal — View tự format
+            ViewData["AppliedCode"] = appliedCode;
             ViewData["Total"] = total.ToString("#,0");
-            ViewData["CountItemCart"] = countItem;
+            ViewData["CountItemCart"] = cart.Count;
+
             return View();
         }
         //Status: 1: Chưa thanh toán | 2: đã thanh toán | 3: lỗi
         [HttpPost]
         [Route("Checkout")]
-        public async Task<IActionResult> Index(string name, string address, string email, string phone, decimal subtotal, decimal discount, decimal total, string paymentmethod)
+        public async Task<IActionResult> Index(
+    string name, string address, string email, string phone,
+    decimal subtotal, decimal discount, decimal total,
+    string paymentmethod)
         {
             HttpContext.Session.SetDecimal("CustomerTotal", total);
             HttpContext.Session.SetDecimal("CustomerSubTotal", subtotal);
@@ -51,6 +57,7 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Controllers
                 Email = email,
                 Phone = phone,
                 PaymentMethod = Convert.ToInt32(paymentmethod),
+                Discount = discount,
                 Status = 1,
                 Total = total,
                 Created_at = DateTime.Now
@@ -61,42 +68,7 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Controllers
 
             var cart = HttpContext.Session.GetObjectFromJson<List<CartModel>>("cart");
             if (cart == null || !cart.Any())
-            {
                 throw new ArgumentException("Giỏ hàng không có sản phẩm!");
-            }
-            else
-            {
-                foreach (var item in cart)
-                {
-                    // Tìm đúng size của sản phẩm trong cart
-                    //var productSize = await _dataContext.ProductSize
-                    //    .Where(ps => ps.ProductId == item.Id && ps.Size == item.Size)
-                    //    .FirstOrDefaultAsync();
-
-                    //if (productSize != null)
-                    //{
-                    //    if (productSize.Quantity >= item.Quantity)
-                    //    {
-                    //        // Trừ tồn kho theo size
-                    //        productSize.Quantity -= item.Quantity;
-                    //        _dataContext.ProductSize.Update(productSize);
-                    //        await _dataContext.SaveChangesAsync();
-                    //    }
-                    //    else
-                    //    {
-                    //        // Không đủ hàng - xóa order vừa tạo và về cart
-                    //        _dataContext.Orders.Remove(order);
-                    //        await _dataContext.SaveChangesAsync();
-                    //        TempData["ErrorMessage"] = $"Sản phẩm '{item.Name}' size {item.Size} không đủ số lượng!";
-                    //        return RedirectToAction("Index", "Cart");
-                    //    }
-                    //}
-                    _dataContext.Orders.Remove(order);
-                    await _dataContext.SaveChangesAsync();
-                    TempData["ErrorMessage"] = $"Sản phẩm '{item.Name}' size {item.Size} không đủ số lượng!";
-                    // Nếu không có size (sản phẩm không quản lý size) thì bỏ qua check
-                }
-            }
 
             var orderDetails = cart.Select(item => new OrderDetailModel
             {
@@ -107,18 +79,19 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Controllers
             }).ToList();
 
             _dataContext.OrderDetails.AddRange(orderDetails);
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
+
+            // Xoá giỏ hàng + coupon khỏi Session
             HttpContext.Session.Remove("cart");
-            switch (paymentmethod)
+            HttpContext.Session.Remove("AppliedCouponCode");
+            HttpContext.Session.Remove("CouponDiscountAmount");
+
+            return paymentmethod switch
             {
-                case "1": //Thanh toán tại cửa hàng    
-                    return RedirectToAction("Index", "Approve");
-                case "2": //VNPay                                 
-                    var url = _vnPayService.CreatePaymentUrl(order, HttpContext);
-                    return Redirect(url);
-                default:
-                    return View();
-            }
+                "1" => RedirectToAction("Index", "Approve"),           // COD
+                "2" => Redirect(_vnPayService.CreatePaymentUrl(order, HttpContext)), // VNPay
+                _ => View()
+            };
         }
         public static string RandomString(int length)
         {

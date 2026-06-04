@@ -28,6 +28,10 @@
                             <div class="invalid-feedback">Ngày là bắt buộc</div>
                         </div>
                         <div class="col-md-12">
+                            <label class="form-label" for="formName">Số tiền giảm giá</label><input type="text" class="form-control" id="formName" required asp-for="DiscountAmount" />
+                            <div class="invalid-feedback">Số tiền giảm giá là bắt buộc</div>
+                        </div>
+                        <div class="col-md-12">
                             <label class="form-label" for="formPlan">Trạng thái</label><select class="form-select" id="formStatus" required asp-for="Status">
                                 <option value="0">Tắt</option>
                                 <option value="1">Bật</option>

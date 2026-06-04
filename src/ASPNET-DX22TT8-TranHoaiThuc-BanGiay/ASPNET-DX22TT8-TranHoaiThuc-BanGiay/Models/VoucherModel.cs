@@ -11,5 +11,6 @@ namespace ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models
         public string? Code { get; set; }        
         public DateTime Date { get; set; }
         public int? Status { get; set; }
+        public decimal? DiscountAmount { get; set; } = 0;
     }
 }

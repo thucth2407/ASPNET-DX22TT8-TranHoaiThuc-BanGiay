@@ -29,6 +29,7 @@
                         <tr>
                             <th>Mã giảm giá</th>
                             <th>Thời gian có hiệu lực</th>
+                            <th>Số tiền giảm giá</th>
                             <th>Trạng thái</th>
                             <th class="text-end"></th>
                         </tr>
@@ -39,6 +40,7 @@
                             <tr>
                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <a href="/admin/ma-giam-gia/cap-nhat/@voucher.Id"><strong>@voucher.Code</strong></a></td>
                                 <td>@voucher.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@voucher.DiscountAmount</td>
                                 <td><span class="badge text-bg-@(voucher.Status == 1 ? "success" : "danger")">@(voucher.Status == 1 ? "Mở" : "Đóng")</span></td>
                                 <td>
                                     <a class="btn btn-light btn-sm" href="/admin/ma-giam-gia/cap-nhat/@voucher.Id">Chi tiết</a>

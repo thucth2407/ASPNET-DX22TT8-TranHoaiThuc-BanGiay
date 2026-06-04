@@ -3,7 +3,12 @@
     ViewData["Title"] = "Home Page";
     var categories = ViewBag.Categories as List<ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.CategoryModel>;
     var products = ViewBag.Products as List<ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.ProductModel>;
+    var newestProducts = products?.OrderByDescending(p => p.Created_at).Take(2).ToList();
+    var heroProd = newestProducts?.ElementAtOrDefault(0);
+    var collectionProd = newestProducts?.ElementAtOrDefault(1);
 }
+
+<!-- HERO -->
 <section class="hero">
     <div class="hero-left">
         <p class="hero-badge">Bộ sưu tập Thu — Đông 2025</p>
@@ -14,20 +19,25 @@
         </p>
         <a href="#products" class="hero-cta">
             Khám phá ngay
-            <svg width="16"
-                 height="16"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
         </a>
     </div>
     <div class="hero-right">
         <div class="hero-img-placeholder">
-            <!-- Replace with actual product image -->
-            <div class="silhouette"></div>
+            @if (heroProd != null && !string.IsNullOrEmpty(heroProd.ImageUrl))
+            {
+                <a href="@Url.Action("Detail", "Product", new { Id = heroProd.Id })">
+                    <img src="@Url.Content("~/upload/product/" + @heroProd.ImageUrl)"
+                         alt="@heroProd.Name"
+                         style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" />
+                </a>
+            }
+            else
+            {
+                <div class="silhouette"></div>
+            }
         </div>
         <div class="hero-scroll">Cuộn xuống</div>
     </div>
@@ -54,184 +64,77 @@
             <p class="section-label">Mới nhất</p>
             <h2 class="section-title">Sản phẩm <em>nổi bật</em></h2>
         </div>
-        <a href="#" class="view-all">Xem tất cả →</a>
+        <a href="@Url.Action("Index", "Product")" class="view-all">Xem tất cả →</a>
     </div>
 
     <div class="product-grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <div class="product-img c1">
-                <div class="product-img-bg">
-                    <div class="product-shape"
-                         style="
-                  width: 110px;
-                  height: 180px;
-                  background: #c8c4bc;
-                  border-radius: 60px 60px 20px 20px;
-                "></div>
+        @if (products != null && products.Any())
+        {
+            @foreach (var product in products.Take(6))
+            {
+                <div class="product-card">
+                    <a href="@Url.Action("Detail", "Product", new { Id = product.Id })">
+                        <div class="product-img">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@Url.Content("~/upload/product/" + @product.ImageUrl)" alt="@product.Name" style="width:100%;height:100%;object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <div class="product-img-bg">
+                                    <div class="product-shape" style="width:100px;height:160px;background:#c8c4bc;border-radius:60px 60px 20px 20px;"></div>
+                                </div>
+                            }                            
+                            <div class="product-overlay">
+                                <button class="add-to-cart"
+                                        onclick="event.preventDefault(); addToCart(@product.Id, '@product.Name', @product.Price, 1, 1, '@product.ImageUrl')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <p class="product-tag">@(product.Category?.Name ?? "Sản phẩm")</p>
+                            <p class="product-name">@product.Name</p>
+                            <div class="product-price">
+                                <span class="price-current">@product.Price.ToString("#,0")₫</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <span class="product-badge">Mới</span>
-                <div class="product-overlay">
-                    <button class="add-to-cart">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <div class="product-info">
-                <p class="product-tag">Áo khoác</p>
-                <p class="product-name">Coat Cashmere Trench</p>
-                <div class="product-price">
-                    <span class="price-current">2.890.000₫</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-img c2">
-                <div class="product-img-bg">
-                    <div class="product-shape"
-                         style="
-                  width: 90px;
-                  height: 160px;
-                  background: #b8c4b8;
-                  border-radius: 8px;
-                "></div>
-                </div>
-                <span class="product-badge sale">−20%</span>
-                <div class="product-overlay">
-                    <button class="add-to-cart">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <div class="product-info">
-                <p class="product-tag">Váy</p>
-                <p class="product-name">Midi Slip Dress Lụa</p>
-                <div class="product-price">
-                    <span class="price-current">1.560.000₫</span>
-                    <span class="price-original">1.950.000₫</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-img c3">
-                <div class="product-img-bg">
-                    <div class="product-shape"
-                         style="
-                  width: 100px;
-                  height: 130px;
-                  background: #c4b8c4;
-                  border-radius: 50% 50% 8px 8px;
-                "></div>
-                </div>
-                <div class="product-overlay">
-                    <button class="add-to-cart">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <div class="product-info">
-                <p class="product-tag">Áo</p>
-                <p class="product-name">Oversized Blazer</p>
-                <div class="product-price">
-                    <span class="price-current">1.890.000₫</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-img c4">
-                <div class="product-img-bg">
-                    <div class="product-shape"
-                         style="
-                  width: 80px;
-                  height: 140px;
-                  background: #bcbcb0;
-                  border-radius: 40px;
-                "></div>
-                </div>
-                <span class="product-badge">Hot</span>
-                <div class="product-overlay">
-                    <button class="add-to-cart">Thêm vào giỏ</button>
-                </div>
-            </div>
-            <div class="product-info">
-                <p class="product-tag">Phụ kiện</p>
-                <p class="product-name">Túi Tote Canvas</p>
-                <div class="product-price">
-                    <span class="price-current">890.000₫</span>
-                </div>
-            </div>
-        </div>
+            }
+        }
+        else
+        {
+            <p style="color: #888;">Chưa có sản phẩm nào.</p>
+        }
     </div>
 </section>
-
-<!-- COLLECTION BANNER -->
-<div class="collection-banner">
-    <div class="collection-img">
-        <div class="pattern"></div>
-        <div style="
-            width: 140px;
-            height: 280px;
-            background: #c0bcb5;
-            border-radius: 80px;
-            position: relative;
-            z-index: 1;
-          "></div>
-    </div>
-    <div class="collection-text">
-        <p class="section-label">Bộ sưu tập đặc biệt</p>
-        <h3 class="collection-title">Essentials — Nền tảng cho mọi tủ đồ</h3>
-        <p>
-            Những món đồ cơ bản được may đo tỉ mỉ từ chất liệu hữu cơ, thiết kế để
-            mặc cả mùa và phối được với mọi outfit.
-        </p>
-        <a href="#" class="btn-outline">Khám phá bộ sưu tập</a>
-    </div>
-</div>
 
 <!-- FEATURES -->
 <div class="features">
     <div class="feature-item">
         <div class="feature-icon">
-            <svg width="18"
-                 height="18"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
         </div>
         <p class="feature-title">Miễn phí vận chuyển</p>
-        <p class="feature-desc">
-            Giao hàng toàn quốc miễn phí cho đơn từ 500.000₫
-        </p>
+        <p class="feature-desc">Giao hàng toàn quốc miễn phí cho đơn từ 500.000₫</p>
     </div>
     <div class="feature-item">
         <div class="feature-icon">
-            <svg width="18"
-                 height="18"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M20 9V7a2 2 0 0 0-2-2h-1M20 9H4M20 9l-2 9H6L4 9m4-4H7a2 2 0 0 0-2 2v2" />
                 <circle cx="9" cy="19" r="1" />
                 <circle cx="15" cy="19" r="1" />
             </svg>
         </div>
         <p class="feature-title">Đổi trả 30 ngày</p>
-        <p class="feature-desc">
-            Không hài lòng? Đổi trả miễn phí trong vòng 30 ngày
-        </p>
+        <p class="feature-desc">Không hài lòng? Đổi trả miễn phí trong vòng 30 ngày</p>
     </div>
     <div class="feature-item">
         <div class="feature-icon">
-            <svg width="18"
-                 height="18"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
         </div>
@@ -240,12 +143,7 @@
     </div>
     <div class="feature-item">
         <div class="feature-icon">
-            <svg width="18"
-                 height="18"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
         </div>
@@ -254,55 +152,19 @@
     </div>
 </div>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-    <div class="section-header" style="padding: 0 0 40px">
-        <div>
-            <p class="section-label">Đánh giá</p>
-            <h2 class="section-title">Khách hàng <em>nói gì</em></h2>
-        </div>
-    </div>
-    <div class="testimonial-grid">
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">
-                "Chất vải mượt hơn tôi nghĩ rất nhiều. Đặt lần đầu đã trở thành
-                khách quen."
-            </p>
-            <p class="testimonial-author">Nguyễn Minh Anh — Hà Nội</p>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">
-                "Thiết kế tối giản nhưng rất tinh tế. Mặc đi làm hay đi chơi đều
-                đẹp."
-            </p>
-            <p class="testimonial-author">Trần Linh Chi — TP. HCM</p>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★☆</div>
-            <p class="testimonial-text">
-                "Giao hàng nhanh, đóng gói cẩn thận. Sản phẩm đúng như mô tả, rất
-                hài lòng."
-            </p>
-            <p class="testimonial-author">Phạm Thu Hà — Đà Nẵng</p>
-        </div>
-    </div>
-</section>
-
-<!-- NEWSLETTER -->
-<div class="newsletter">
-    <div class="newsletter-left">
-        <p class="section-label">Đăng ký nhận tin</p>
-        <h3 class="newsletter-title">
-            Đón đầu xu hướng<br /><em>cùng MURA</em>
-        </h3>
-    </div>
-    <div class="newsletter-form">
-        <input type="email" placeholder="Địa chỉ email của bạn" />
-        <button type="button">Đăng ký ngay</button>
-        <p class="newsletter-note">
-            Chúng tôi không gửi spam. Hủy đăng ký bất kỳ lúc nào.
-        </p>
-    </div>
-</div></div>
+@section Scripts {
+    <script>
+        function addToCart(id, name, price, quantity, type, imageUrl) {
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'GET',
+                data: { Id: id, Name: name, Price: price, quantity: quantity, Type: type, imageUrl: imageUrl },
+                success: function (res) {
+                    if (res === true) {
+                        alert('Đã thêm vào giỏ hàng!');
+                    }
+                }
+            });
+        }
+    </script>
+}

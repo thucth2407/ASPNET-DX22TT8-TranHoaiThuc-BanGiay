@@ -1,460 +1,204 @@
 ﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.ProductModel
 @{
-    ViewData["Title"] = Model?.Name ?? "Chi tiết sản phẩm";    
+    ViewData["Title"] = Model?.Name ?? "Chi tiết sản phẩm";
+    var related = ViewBag.Related as List<ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.ProductModel>;
 }
+
+<!-- BREADCRUMB -->
 <div class="breadcrumb">
-    <a href="shop-template.html">Trang chủ</a><span>›</span>
-    <a href="mura-products.html">Bộ sưu tập</a><span>›</span>
-    <a href="mura-products.html">Áo khoác</a><span>›</span>
-    <span style="color: var(--black)">Cashmere Trench Coat</span>
+    <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+    <span>›</span>
+    <a href="@Url.Action("Index", "Product")">Bộ sưu tập</a>
+    <span>›</span>
+    @if (Model?.Category != null)
+    {
+        <a href="@Url.Action("Index", "Product", new { category = Model.Category.Slug })">@Model.Category.Name</a>
+        <span>›</span>
+    }
+    <span style="color:var(--black)">@Model?.Name</span>
 </div>
 
 <!-- PRODUCT DETAIL -->
 <div class="product-detail">
-    <!-- GALLERY -->
+
+    <!-- GALLERY (trái) -->
     <div class="gallery">
-        <div class="gallery-thumbs">
-            <div class="thumb active">
-                <div style="
-                width: 40px;
-                height: 55px;
-                background: #c8c4bc;
-                border-radius: 20px 20px 8px 8px;
-              "></div>
-            </div>
-            <div class="thumb">
-                <div style="
-                width: 40px;
-                height: 55px;
-                background: #b8b4ac;
-                border-radius: 8px;
-              "></div>
-            </div>
-            <div class="thumb">
-                <div style="
-                width: 40px;
-                height: 55px;
-                background: #d4d0c8;
-                border-radius: 8px 8px 20px 20px;
-              "></div>
-            </div>
-            <div class="thumb">
-                <div style="
-                width: 40px;
-                height: 55px;
-                background: #bab6ae;
-                border-radius: 4px;
-              "></div>
-            </div>
-        </div>
+        <div></div>
         <div class="gallery-main">
-            <span class="product-badge-detail">Mới</span>
-            <div class="main-img">
-                <div style="
-                width: 200px;
-                height: 340px;
-                background: #c8c4bc;
-                border-radius: 100px 100px 40px 40px;
-                position: relative;
-              ">
-                    <div style="
-                  position: absolute;
-                  top: -70px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 80px;
-                  height: 80px;
-                  background: #c8c4bc;
-                  border-radius: 50%;
-                "></div>
+            @if (!string.IsNullOrEmpty(Model?.ImageUrl))
+            {
+                <img id="mainImage" src="@Url.Content("~/upload/product/" + @Model.ImageUrl)" alt="@Model.Name"
+                     style="width:100%;height:100%;object-fit:cover;" />
+            }
+            else
+            {
+                <div class="main-img">
+                    <div style="width:160px;height:280px;background:#c8c4bc;border-radius:80px;"></div>
                 </div>
-            </div>
-            <div class="gallery-nav">
-                <button>←</button>
-                <button>→</button>
-            </div>
+            }            
         </div>
     </div>
 
-    <!-- INFO PANEL -->
+    <!-- PRODUCT INFO PANEL (phải) -->
     <div class="product-info-panel">
-        <p class="product-brand">MURA — Bộ sưu tập Thu Đông 2025</p>
-        <h1 class="product-title">Cashmere<br /><em>Trench Coat</em></h1>
-        <p class="product-sub">
-            Áo khoác dáng dài từ cashmere nguyên chất Mông Cổ
-        </p>
 
-        <div class="rating-row">
-            <span class="stars">★★★★★</span>
-            <span class="rating-count">4.9</span>
-            <span class="rating-sep">·</span>
-            <a href="#reviews" class="review-link">48 đánh giá</a>
-            <span class="rating-sep">·</span>
-            <span style="font-size: 13px; color: var(--gold)">✓ Còn hàng</span>
-        </div>
+        <p class="product-brand">@(Model?.Category?.Name ?? "MURA")</p>
+        <h1 class="product-title">@Model?.Name</h1>
+        <p class="product-sub">@Model?.Description</p>
 
+        <!-- GIÁ -->
         <div class="price-section">
-            <span class="price-main">2.890.000₫</span>
-            <span class="price-was"></span>
-            <p class="price-save">Miễn phí vận chuyển toàn quốc</p>
-        </div>
+            <span class="price-main">@Model?.Price.ToString("#,0")₫</span>
+        </div>     
 
-        <!-- Color -->
-        <div style="margin-bottom: 28px">
-            <div class="option-label">
-                Màu sắc: <span class="color-name" id="colorName">Camel Stone</span>
-                <span></span>
-            </div>
-            <div class="color-row">
-                <div class="color-opt active"
-                     style="background: #c8b89a"
-                     title="Camel Stone"
-                     onclick="selectColor(this, 'Camel Stone')"></div>
-                <div class="color-opt"
-                     style="background: #111110"
-                     title="Đen Ebony"
-                     onclick="selectColor(this, 'Đen Ebony')"></div>
-                <div class="color-opt"
-                     style="background: #c8c4bc; border: 1px solid #b8b4ac"
-                     title="Kem Ivory"
-                     onclick="selectColor(this, 'Kem Ivory')"></div>
-                <div class="color-opt"
-                     style="background: #7a6a5a"
-                     title="Nâu Mocha"
-                     onclick="selectColor(this, 'Nâu Mocha')"></div>
-            </div>
-        </div>
-
-        <!-- Size -->
-        <div style="margin-bottom: 28px">
-            <div class="option-label">
-                Kích cỡ: <a href="#">Hướng dẫn chọn size</a>
-            </div>
-            <div class="size-row">
-                <button class="size-opt sold-out" title="Hết hàng">XS</button>
-                <button class="size-opt active" onclick="selectSize(this)">
-                    S
-                </button>
-                <button class="size-opt" onclick="selectSize(this)">M</button>
-                <button class="size-opt" onclick="selectSize(this)">L</button>
-                <button class="size-opt" onclick="selectSize(this)">XL</button>
-            </div>
-        </div>
-
-        <!-- Quantity -->
-        <div style="margin-bottom: 24px">
-            <div class="option-label">Số lượng</div>
-            <div class="qty-row">
-                <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                <input type="number"
-                       class="qty-input"
-                       id="qty"
-                       value="1"
-                       min="1"
-                       max="10" />
-                <button class="qty-btn" onclick="changeQty(1)">+</button>
-            </div>
+        <!-- SỐ LƯỢNG -->
+        <div class="option-label">Số lượng <span style="font-size:11px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;">Còn @Model?.Quantity sản phẩm</span></div>
+        <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <input class="qty-input" id="qtyDisplay" type="text" value="1" readonly />
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
 
         <!-- CTA -->
         <div class="cta-row">
-            <button class="btn-primary"
-                    onclick="window.location = 'mura-cart.html'">
-                Thêm vào giỏ hàng
-            </button>
-            <button class="btn-wish">
-                <svg width="18"
-                     height="18"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.5"
-                     viewBox="0 0 24 24">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-            </button>
+            <button class="btn-primary" onclick="handleAddToCart()">Thêm vào giỏ hàng</button>            
         </div>
-        <button class="btn-secondary"
-                style="width: 100%; margin-bottom: 24px"
-                onclick="window.location = 'mura-checkout.html'">
-            Mua ngay
-        </button>
 
+        <!-- SHIPPING NOTE -->
         <div class="shipping-note">
-            <svg width="18"
-                 height="18"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5"
-                 viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-            <span>
-                Đặt hàng trước <strong>15:00</strong> — giao hàng
-                <strong>ngay hôm nay</strong> tại TP.HCM & Hà Nội
-            </span>
+            Miễn phí vận chuyển cho đơn từ 500.000₫ — Đổi trả 30 ngày
         </div>
 
-        <!-- TABS -->
+        <!-- TABS: Mô tả / Chi tiết -->
         <div class="tabs">
             <div class="tab-nav">
-                <button class="tab-btn active" onclick="openTab(this, 'desc')">
-                    Mô tả
-                </button>
-                <button class="tab-btn" onclick="openTab(this, 'detail')">
-                    Chi tiết
-                </button>
-                <button class="tab-btn" onclick="openTab(this, 'care')">
-                    Bảo quản
-                </button>
-                <button class="tab-btn" onclick="openTab(this, 'reviews')">
-                    Đánh giá (48)
-                </button>
+                <button class="tab-btn active" onclick="switchTab(this, 'tab-desc')">Mô tả</button>
+                <button class="tab-btn" onclick="switchTab(this, 'tab-spec')">Thông số</button>
             </div>
-
             <div class="tab-content active" id="tab-desc">
-                <p>
-                    Cashmere Trench Coat là thiết kế tiêu biểu cho tinh thần MURA —
-                    tối giản, bền vững và vượt thời gian. Được may từ 100% cashmere
-                    Grade A từ Nội Mông, mỗi chiếc áo là một tác phẩm thủ công tinh
-                    xảo.
-                </p>
-                <p>
-                    Đường cắt may điêu luyện tôn dáng người mặc, phù hợp với nhiều vóc
-                    dáng khác nhau. Lớp lót lụa bên trong mang lại cảm giác mềm mại,
-                    thông thoáng khi mặc.
-                </p>
+                @if (!string.IsNullOrEmpty(Model?.Content))
+                {
+                    <p>@Html.Raw(Model.Content)</p>
+                }
+                else
+                {
+                    <p>@Model?.Description</p>
+                }
             </div>
-
-            <div class="tab-content" id="tab-detail">
+            <div class="tab-content" id="tab-spec">
                 <table class="spec-table">
-                    <tr>
-                        <td>Chất liệu</td>
-                        <td>100% Cashmere Grade A</td>
-                    </tr>
-                    <tr>
-                        <td>Xuất xứ</td>
-                        <td>Sản xuất tại Việt Nam</td>
-                    </tr>
-                    <tr>
-                        <td>Dáng áo</td>
-                        <td>Dáng dài, ôm nhẹ</td>
-                    </tr>
-                    <tr>
-                        <td>Độ dài</td>
-                        <td>105 cm (size M)</td>
-                    </tr>
-                    <tr>
-                        <td>Màu sắc</td>
-                        <td>Camel Stone, Đen Ebony, Kem Ivory, Nâu Mocha</td>
-                    </tr>
-                    <tr>
-                        <td>Cúc áo</td>
-                        <td>Đồi mồi nhân tạo</td>
-                    </tr>
-                    <tr>
-                        <td>Lớp lót</td>
-                        <td>Lụa 100%</td>
-                    </tr>
-                    <tr>
-                        <td>Mã sản phẩm</td>
-                        <td>MR-TC-2025-001</td>
-                    </tr>
+                    <tr><td>Danh mục</td><td>@(Model?.Category?.Name ?? "—")</td></tr>
+                    <tr><td>Trạng thái</td><td>@(Model?.Status == 1 ? "Còn hàng" : "Ngừng kinh doanh")</td></tr>
+                    <tr><td>Tồn kho</td><td>@Model?.Quantity sản phẩm</td></tr>
+                    <tr><td>Cập nhật</td><td>@Model?.Updated_at.ToString("dd/MM/yyyy")</td></tr>
                 </table>
-            </div>
-
-            <div class="tab-content" id="tab-care">
-                <p>Để bảo quản cashmere đúng cách và giữ được vẻ đẹp lâu dài:</p>
-                <table class="spec-table">
-                    <tr>
-                        <td>Giặt</td>
-                        <td>Giặt tay nhẹ nhàng hoặc giặt khô</td>
-                    </tr>
-                    <tr>
-                        <td>Nhiệt độ</td>
-                        <td>Nước lạnh hoặc ấm, tối đa 30°C</td>
-                    </tr>
-                    <tr>
-                        <td>Ủi</td>
-                        <td>Nhiệt độ thấp, ủi mặt trái</td>
-                    </tr>
-                    <tr>
-                        <td>Bảo quản</td>
-                        <td>Gập phẳng, tránh treo lâu ngày</td>
-                    </tr>
-                    <tr>
-                        <td>Tẩy</td>
-                        <td>Không sử dụng chất tẩy</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="tab-content" id="tab-reviews" id="reviews">
-                <div class="review-summary">
-                    <div class="review-score">
-                        <div class="score-num">4.9</div>
-                        <div class="score-stars">★★★★★</div>
-                        <div class="score-total">48 đánh giá</div>
-                    </div>
-                    <div class="review-bars">
-                        <div class="bar-row">
-                            <span>5 ★</span>
-                            <div class="bar-track">
-                                <div class="bar-fill" style="width: 85%"></div>
-                            </div>
-                            <span>41</span>
-                        </div>
-                        <div class="bar-row">
-                            <span>4 ★</span>
-                            <div class="bar-track">
-                                <div class="bar-fill" style="width: 10%"></div>
-                            </div>
-                            <span>5</span>
-                        </div>
-                        <div class="bar-row">
-                            <span>3 ★</span>
-                            <div class="bar-track">
-                                <div class="bar-fill" style="width: 4%"></div>
-                            </div>
-                            <span>2</span>
-                        </div>
-                        <div class="bar-row">
-                            <span>2 ★</span>
-                            <div class="bar-track">
-                                <div class="bar-fill" style="width: 0%"></div>
-                            </div>
-                            <span>0</span>
-                        </div>
-                        <div class="bar-row">
-                            <span>1 ★</span>
-                            <div class="bar-track">
-                                <div class="bar-fill" style="width: 0%"></div>
-                            </div>
-                            <span>0</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="reviewer">Nguyễn Minh Anh</span><span class="review-date">12/11/2025</span>
-                    </div>
-                    <div class="review-stars">★★★★★</div>
-                    <p class="review-text">
-                        Chất cashmere mềm và ấm hơn mình tưởng rất nhiều. Mặc lần đầu đã
-                        nghiện, form áo cũng rất đẹp. Đóng gói cẩn thận, giao nhanh. Sẽ
-                        mua thêm màu khác!
-                    </p>
-                </div>
-                <div class="review-card">
-                    <div class="review-header">
-                        <span class="reviewer">Trần Linh Chi</span><span class="review-date">05/11/2025</span>
-                    </div>
-                    <div class="review-stars">★★★★★</div>
-                    <p class="review-text">
-                        Đây là chiếc áo đáng đầu tư nhất tủ đồ của mình. Mặc đi làm hay
-                        đi chơi đều hợp. Màu Camel Stone rất sang, không bị lỗi mốt.
-                    </p>
-                </div>
             </div>
         </div>
+
     </div>
 </div>
 
-<!-- RELATED PRODUCTS -->
-<section class="related">
-    <p class="section-label">Có thể bạn thích</p>
-    <h2 class="section-title">Sản phẩm <em>liên quan</em></h2>
-    <div class="related-grid">
-        <div class="related-card">
-            <div class="related-img" style="background: #e4e8e4">
-                <div style="
-                width: 90px;
-                height: 155px;
-                background: #b8c4b8;
-                border-radius: 8px;
-              "></div>
-            </div>
-            <div class="related-info">
-                <p style="
-                font-size: 10px;
-                color: var(--gold);
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                margin-bottom: 4px;
-              ">
-                    Váy
-                </p>
-                <p class="related-name">Midi Slip Dress</p>
-                <p class="related-price">1.560.000₫</p>
-            </div>
-        </div>
-        <div class="related-card">
-            <div class="related-img" style="background: #e8e4e8">
-                <div style="
-                width: 100px;
-                height: 130px;
-                background: #c4b8c4;
-                border-radius: 50% 50% 8px 8px;
-              "></div>
-            </div>
-            <div class="related-info">
-                <p style="
-                font-size: 10px;
-                color: var(--gold);
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                margin-bottom: 4px;
-              ">
-                    Áo
-                </p>
-                <p class="related-name">Linen Blazer</p>
-                <p class="related-price">1.890.000₫</p>
-            </div>
-        </div>
-        <div class="related-card">
-            <div class="related-img" style="background: #ebe5e0">
-                <div style="
-                width: 95px;
-                height: 155px;
-                background: #c4b8ac;
-                border-radius: 10px 10px 40px 40px;
-              "></div>
-            </div>
-            <div class="related-info">
-                <p style="
-                font-size: 10px;
-                color: var(--gold);
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                margin-bottom: 4px;
-              ">
-                    Áo
-                </p>
-                <p class="related-name">Silk Wrap Blouse</p>
-                <p class="related-price">1.290.000₫</p>
-            </div>
-        </div>
-        <div class="related-card">
-            <div class="related-img" style="background: #e8e8e0">
-                <div style="
-                width: 80px;
-                height: 140px;
-                background: #bcbcb0;
-                border-radius: 40px;
-              "></div>
-            </div>
-            <div class="related-info">
-                <p style="
-                font-size: 10px;
-                color: var(--gold);
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                margin-bottom: 4px;
-              ">
-                    Phụ kiện
-                </p>
-                <p class="related-name">Canvas Tote Bag</p>
-                <p class="related-price">890.000₫</p>
-            </div>
+<!-- SẢN PHẨM LIÊN QUAN -->
+@if (related != null && related.Any())
+{
+    <div class="related">
+        <p class="section-label">Gợi ý</p>
+        <h2 class="section-title">Sản phẩm <em>liên quan</em></h2>
+        <div class="related-grid">
+            @foreach (var prod in related)
+            {
+                <div class="related-card" onclick="window.location='@Url.Action("Detail", "Product", new { Id = prod.Id })'">
+                    <div class="related-img">
+                        @if (!string.IsNullOrEmpty(prod.ImageUrl))
+                        {
+                            <img src="@Url.Content("~/upload/product/" + @prod.ImageUrl)" alt="@prod.Name"
+                                 style="width:100%;height:100%;object-fit:cover;" />
+                        }
+                        else
+                        {
+                            <div style="width:100%;height:100%;background:#e8e5e0;display:flex;align-items:center;justify-content:center;">
+                                <div style="width:80px;height:140px;background:#c8c4bc;border-radius:40px;"></div>
+                            </div>
+                        }
+                    </div>
+                    <div class="related-info">
+                        <p class="related-name">@prod.Name</p>
+                        <p class="related-price">@prod.Price.ToString("#,0")₫</p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</section>
+}
+
+@section Scripts {
+    <script>
+        var selectedSize = '';
+        var qty = 1;
+
+        function selectSize(btn, size) {
+            document.querySelectorAll('#sizeOptions .size-opt').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSize = size;
+        }
+
+        function changeQty(delta) {
+            qty = Math.max(1, qty + delta);
+            document.getElementById('qtyDisplay').value = qty;
+        }
+
+        function setMain(url) {
+            document.getElementById('mainImage').src = url;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function switchTab(btn, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function handleAddToCart() {
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'GET',
+                data: {
+                    Id: @Model?.Id,
+                    Name: '@Html.Raw(Model?.Name?.Replace("'", "\\'"))',
+                    Price: @Model?.Price,
+                    quantity: qty,
+                    Type: 1,
+                    imageUrl: '@Model?.ImageUrl',
+                    size: selectedSize
+                },
+                success: function (res) {
+                    if (res === true) alert('Đã thêm vào giỏ hàng!');
+                }
+            });
+        }
+
+        function handleBuyNow() {           
+            $.ajax({
+                url: '@Url.Action("AddToCart", "Cart")',
+                type: 'GET',
+                data: {
+                    Id: @Model?.Id,
+                    Name: '@Html.Raw(Model?.Name?.Replace("'", "\\'"))',
+                    Price: @Model?.Price,
+                    quantity: qty,
+                    Type: 1,
+                    imageUrl: '@Model?.ImageUrl',
+                    size: selectedSize
+                },
+                success: function () {
+                    window.location = '@Url.Action("Index", "Checkout")';
+                }
+            });
+        }
+    </script>
+}

@@ -19,7 +19,7 @@
             <div class="col-12 col-xl-12">
                 <form class="panel needs-validation" novalidate asp-action="Create" method="post" enctype="multipart/form-data">
                     <div class="row g-3">                                               
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label class="form-label" for="formName">Tên khách hàng</label>
                             <input class="form-control" id="formName" type="text" asp-for="Name" />
                         </div>
@@ -34,6 +34,10 @@
                         <div class="col-md-6">
                             <label class="form-label" for="formTotal">Tổng tiền</label>
                             <input class="form-control" id="formTotal" type="text" asp-for="Total" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formTotal">Số tiền được giảm</label>
+                            <input class="form-control" id="formTotal" type="text" asp-for="Discount" />
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="formPlan">Phương thức thanh toán</label>

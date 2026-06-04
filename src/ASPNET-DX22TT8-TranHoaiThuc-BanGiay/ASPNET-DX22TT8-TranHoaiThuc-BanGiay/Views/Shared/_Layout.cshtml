@@ -19,11 +19,13 @@
     @RenderBody()
     @await Html.PartialAsync("_FooterPartial")
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="~/assets/mainsite/assets/js/cart.js"></script>
     <script src="~/assets/mainsite/assets/js/checkout.js"></script>
     <script src="~/assets/mainsite/assets/js/product-detail.js"></script>
     <script src="~/assets/mainsite/assets/js/products.js"></script>
     <script src="~/assets/mainsite/assets/js/thankyou.js"></script>
-    <script src="~/assets/mainsite/assets/js/customscreen.js"></script>
+    <script src="~/assets/mainsite/assets/js/customstart.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

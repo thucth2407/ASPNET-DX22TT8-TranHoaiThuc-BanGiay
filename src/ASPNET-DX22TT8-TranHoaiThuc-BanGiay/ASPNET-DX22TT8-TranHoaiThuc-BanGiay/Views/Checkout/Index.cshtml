@@ -1,33 +1,27 @@
 ﻿@using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models
 @using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Extensions
 @{
-    ViewData["Title"] = "Checkout";
+    ViewData["Title"] = "Thanh toán";
     var cart = Context.Session.GetObjectFromJson<List<CartModel>>("cart") ?? new List<CartModel>();
-    decimal cartTotal = cart.Sum(i => i.Price * i.Quantity);
+    decimal subTotal = cart.Sum(i => i.Price * i.Quantity);
+    decimal discountAmt = ViewData["DiscountAmount"] as decimal? ?? 0m;
+    string appliedCode = ViewData["AppliedCode"] as string ?? "";
+    decimal total = Math.Max(0, subTotal - discountAmt);
 }
+
 <div class="breadcrumb">
-    <a href="shop-template.html">Trang chủ</a><span class="sep">›</span>
-    <a href="mura-cart.html">Giỏ hàng</a><span class="sep">›</span>
+    <a href="@Url.Action("Index","Home")">Trang chủ</a><span class="sep">›</span>
+    <a href="@Url.Action("Index","Cart")">Giỏ hàng</a><span class="sep">›</span>
     <span style="color:var(--black)">Thanh toán</span>
 </div>
 
 <!-- STEPS -->
 <div class="checkout-steps">
-    <div class="step done">
-        <span class="step-num">✓</span>Giỏ hàng
-    </div>
+    <div class="step done"><span class="step-num">✓</span>Giỏ hàng</div>
     <div class="step-line"></div>
-    <div class="step active">
-        <span class="step-num">2</span>Thông tin
-    </div>
+    <div class="step active"><span class="step-num">2</span>Thông tin</div>
     <div class="step-line"></div>
-    <div class="step">
-        <span class="step-num">3</span>Vận chuyển
-    </div>
-    <div class="step-line"></div>
-    <div class="step">
-        <span class="step-num">4</span>Thanh toán
-    </div>
+    <div class="step"><span class="step-num">3</span>Thanh toán</div>
 </div>
 
 <!-- MAIN LAYOUT -->
@@ -36,31 +30,21 @@
     <!-- ── FORM PANEL ── -->
     <div class="form-panel">
 
-        <!-- CONTACT INFO -->
+        <!-- BƯỚC 1 — THÔNG TIN LIÊN HỆ -->
         <div class="section-block">
             <p class="block-label">Bước 1</p>
             <h2 class="block-title">Thông tin <em>liên hệ</em></h2>
 
-            <!-- Saved accounts -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-                <span style="font-size:13px;color:var(--muted);">Bạn đã có tài khoản?</span>
-                <a href="#"
-                   style="font-size:13px;color:var(--black);text-decoration:none;border-bottom:1px solid var(--stone);padding-bottom:1px;">
-                    Đăng
-                    nhập
-                </a>
-            </div>
-
             <div class="field-row">
                 <div class="field">
-                    <label>Họ <span class="optional"></span></label>
-                    <input type="text" placeholder="Nguyễn" id="firstName">
-                    <span class="error-msg">Vui lòng nhập họ của bạn</span>
+                    <label>Họ và tên</label>
+                    <input type="text" placeholder="Nguyễn Văn A" id="inp-name">
+                    <span class="error-msg" id="err-name">Vui lòng nhập họ và tên</span>
                 </div>
                 <div class="field">
-                    <label>Tên</label>
-                    <input type="text" placeholder="Minh Anh" id="lastName">
-                    <span class="error-msg">Vui lòng nhập tên của bạn</span>
+                    <label>Địa chỉ giao hàng</label>
+                    <input type="text" placeholder="Số nhà, đường, quận, thành phố" id="inp-address">
+                    <span class="error-msg" id="err-address">Vui lòng nhập địa chỉ</span>
                 </div>
             </div>
 
@@ -68,266 +52,58 @@
                 <div class="field">
                     <label>Email</label>
                     <div class="input-group">
-                        <input type="email" placeholder="email@example.com" id="email" class="success">
-                        <span class="input-icon success">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                        </span>
+                        <input type="email" placeholder="email@example.com" id="inp-email">
+                        <span class="input-icon" id="icon-email"></span>
                     </div>
-                    <span class="error-msg">Địa chỉ email không hợp lệ</span>
+                    <span class="error-msg" id="err-email">Địa chỉ email không hợp lệ</span>
                 </div>
                 <div class="field">
                     <label>Số điện thoại</label>
                     <div class="input-group">
-                        <input type="tel" placeholder="0901 234 567" id="phone">
+                        <input type="tel" placeholder="0901 234 567" id="inp-phone">
                         <span class="input-icon">
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.16 6.16l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                         </span>
                     </div>
-                    <span class="error-msg">Số điện thoại không hợp lệ</span>
+                    <span class="error-msg" id="err-phone">Số điện thoại không hợp lệ (10 chữ số)</span>
                 </div>
             </div>
-
-            <label class="check-row" style="margin-top:8px;">
-                <input type="checkbox" checked>
-                <span>Nhận thông tin đơn hàng và cập nhật mới qua email</span>
-            </label>
         </div>
 
         <hr class="block-divider">
 
-        <!-- DELIVERY ADDRESS -->
+        <!-- BƯỚC 2 — PHƯƠNG THỨC THANH TOÁN -->
         <div class="section-block">
             <p class="block-label">Bước 2</p>
-            <h2 class="block-title">Địa chỉ <em>giao hàng</em></h2>
-
-            <!-- Saved addresses -->
-            <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-bottom:14px;">
-                Địa
-                chỉ đã lưu
-            </p>
-            <div class="saved-addresses">
-                <label class="address-card active" onclick="selectAddr(this)">
-                    <input type="radio" name="addr" checked>
-                    <span class="addr-badge">Mặc định</span>
-                    <div class="addr-name">Nguyễn Minh Anh</div>
-                    <div class="addr-detail">123 Nguyễn Huệ, P. Bến Nghé<br>Quận 1, TP. Hồ Chí Minh</div>
-                </label>
-                <label class="address-card" onclick="selectAddr(this)">
-                    <input type="radio" name="addr">
-                    <div class="addr-name">Văn phòng</div>
-                    <div class="addr-detail">45 Lê Lợi, P. Phạm Ngũ Lão<br>Quận 1, TP. Hồ Chí Minh</div>
-                </label>
-                <div class="add-new-addr" onclick="toggleNewAddr()">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                    Thêm địa chỉ mới
-                </div>
-            </div>
-
-            <!-- New address form (hidden by default) -->
-            <div id="newAddrForm" style="display:none;">
-                <div class="field-row full" style="margin-bottom:16px;">
-                    <div class="field">
-                        <label>Địa chỉ</label>
-                        <input type="text" placeholder="Số nhà, tên đường, phường/xã">
-                    </div>
-                </div>
-                <div class="field-row triple">
-                    <div class="field">
-                        <label>Tỉnh / Thành phố</label>
-                        <select>
-                            <option value="">Chọn tỉnh/thành</option>
-                            <option selected>TP. Hồ Chí Minh</option>
-                            <option>Hà Nội</option>
-                            <option>Đà Nẵng</option>
-                            <option>Cần Thơ</option>
-                            <option>Bình Dương</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Quận / Huyện</label>
-                        <select>
-                            <option value="">Chọn quận/huyện</option>
-                            <option>Quận 1</option>
-                            <option>Quận 2</option>
-                            <option>Quận 3</option>
-                            <option>Bình Thạnh</option>
-                            <option>Gò Vấp</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>Phường / Xã</label>
-                        <select>
-                            <option value="">Chọn phường/xã</option>
-                            <option>Bến Nghé</option>
-                            <option>Bến Thành</option>
-                            <option>Phạm Ngũ Lão</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field-row full">
-                    <div class="field">
-                        <label>Ghi chú giao hàng <span class="optional">(Tùy chọn)</span></label>
-                        <textarea placeholder="Ví dụ: Gọi trước khi giao, giao giờ hành chính..."></textarea>
-                    </div>
-                </div>
-                <label class="check-row">
-                    <input type="checkbox">
-                    <span>Lưu địa chỉ này cho lần sau</span>
-                </label>
-            </div>
-        </div>
-
-        <hr class="block-divider">
-
-        <!-- PAYMENT METHOD -->
-        <div class="section-block">
-            <p class="block-label">Bước 3</p>
             <h2 class="block-title">Phương thức <em>thanh toán</em></h2>
 
-            <div class="payment-tabs">
-                <button class="pay-tab active" onclick="switchPay(this,'card')">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <rect x="1" y="4" width="22" height="16" rx="2" />
-                        <line x1="1" y1="10" x2="23" y2="10" />
-                    </svg>
-                    Thẻ ngân hàng
-                </button>
-                <button class="pay-tab" onclick="switchPay(this,'qr')">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="7" />
-                        <rect x="14" y="3" width="7" height="7" />
-                        <rect x="3" y="14" width="7" height="7" />
-                        <rect x="14" y="14" width="3" height="3" />
-                    </svg>
-                    QR / Ví điện tử
-                </button>
-                <button class="pay-tab" onclick="switchPay(this,'cod')">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <line x1="12" y1="1" x2="12" y2="23" />
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                    Tiền mặt (COD)
-                </button>
-            </div>
+            <div class="payment-options">
+                <div class="payment-card" id="card-cod" onclick="selectPayment('cod')">
+                    <div class="radio-dot"></div>
+                    <div class="payment-icon cod">🚚</div>
+                    <div class="payment-info">
+                        <p class="payment-name">COD</p>
+                        <p class="payment-desc">Thanh toán khi nhận hàng</p>
+                    </div>
+                </div>
 
-            <!-- Card Form -->
-            <div class="pay-content active" id="pay-card">
-                <div class="field-row full" style="margin-bottom:16px;">
-                    <div class="field">
-                        <label>Số thẻ</label>
-                        <div class="card-number-wrapper">
-                            <div class="card-brand"><span class="visa">VISA</span><span class="mc">MC</span></div>
-                            <input type="text" placeholder="1234  5678  9012  3456" id="cardNum" oninput="formatCard(this)"
-                                   maxlength="19" style="padding-left:72px;">
-                        </div>
-                    </div>
-                </div>
-                <div class="field-row full" style="margin-bottom:16px;">
-                    <div class="field">
-                        <label>Tên chủ thẻ</label>
-                        <input type="text" placeholder="NGUYEN MINH ANH" style="text-transform:uppercase;"
-                               oninput="this.value=this.value.toUpperCase()">
-                    </div>
-                </div>
-                <div class="field-row">
-                    <div class="field">
-                        <label>Ngày hết hạn</label>
-                        <input type="text" placeholder="MM / YY" id="expiry" oninput="formatExpiry(this)" maxlength="7">
-                    </div>
-                    <div class="field">
-                        <label>Mã CVV</label>
-                        <div class="input-group">
-                            <input type="password" placeholder="• • •" maxlength="4" id="cvv">
-                            <span class="input-icon">
-                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="cvv-info">
-                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="12" y1="8" x2="12" y2="12" />
-                                <line x1="12" y1="16" x2="12.01" y2="16" />
-                            </svg>
-                            3 số sau mặt lưng thẻ
-                        </div>
-                    </div>
-                </div>
-                <label class="check-row" style="margin-top:8px;">
-                    <input type="checkbox" checked>
-                    <span>Lưu thẻ này cho lần thanh toán sau</span>
-                </label>
-            </div>
-
-            <!-- QR Form -->
-            <div class="pay-content" id="pay-qr">
-                <div class="qr-section">
-                    <div class="qr-box">
-                        <!-- QR placeholder grid -->
-                        <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:2px;padding:10px;width:100%;height:100%;">
-                            <script>
-                                const p = '111000111100111001001000101001001001011101001001011101001001011101001001010000101001110100111000111';
-                                document.write(p.split('').map(c => `<div style="background:${c === '1' ? '#111110' : 'transparent'};border-radius:1px;"></div>`).join(''));
-                            </script>
-                        </div>
-                    </div>
-                    <div class="qr-info">
-                        <h4>Quét mã để thanh toán</h4>
-                        <p>
-                            Mở ứng dụng ngân hàng hoặc ví điện tử, chọn <strong>Quét mã QR</strong> và thanh toán số tiền
-                            <strong>4.950.000₫</strong>
-                        </p>
-                        <div class="qr-bank-list">
-                            <span class="bank-tag">MoMo</span>
-                            <span class="bank-tag">ZaloPay</span>
-                            <span class="bank-tag">VNPay</span>
-                            <span class="bank-tag">Vietcombank</span>
-                            <span class="bank-tag">BIDV</span>
-                            <span class="bank-tag">Techcombank</span>
-                        </div>
+                <div class="payment-card selected" id="card-vnpay" onclick="selectPayment('vnpay')">
+                    <div class="radio-dot"></div>
+                    <div class="payment-icon vnpay">💳</div>
+                    <div class="payment-info">
+                        <p class="payment-name">VNPay</p>
+                        <p class="payment-desc">Ví điện tử / QR Code</p>
                     </div>
                 </div>
             </div>
 
-            <!-- COD Form -->
-            <div class="pay-content" id="pay-cod">
-                <div class="cod-notice">
-                    <strong>Thanh toán khi nhận hàng (COD)</strong><br>
-                    Bạn sẽ thanh toán <strong>4.950.000₫</strong> bằng tiền mặt khi nhận hàng. Vui lòng chuẩn bị tiền mặt chính
-                    xác để thuận tiện cho người giao hàng.<br><br>
-                    Lưu ý: Đơn hàng COD có thể mất thêm 1–2 ngày so với thông thường.
-                </div>
+            <div class="payment-note cod-note" id="note-cod" style="display:none;">
+                ℹ️ Vui lòng chuẩn bị đúng số tiền khi nhận hàng.
             </div>
-
-            <div class="security-row">
-                <div class="sec-badge">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <rect x="3" y="11" width="18" height="11" rx="2" />
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                    SSL 256-bit
-                </div>
-                <div class="sec-badge">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    Bảo mật thông tin
-                </div>
-                <div class="sec-badge">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    PCI-DSS chuẩn quốc tế
-                </div>
+            <div class="payment-note vnpay-note" id="note-vnpay" style="display:flex;">
+                🔒 Bạn sẽ được chuyển đến trang VNPay để hoàn tất thanh toán an toàn.
             </div>
         </div>
 
@@ -337,23 +113,19 @@
         <div>
             <label class="check-row">
                 <input type="checkbox" id="agreeTerms" checked>
-                <span>Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a> của MURA</span>
-            </label>
-            <label class="check-row">
-                <input type="checkbox">
-                <span>Nhận thông tin khuyến mãi, ưu đãi đặc biệt từ MURA qua email & SMS</span>
+                <span>Tôi đồng ý với <a href="#">Điều khoản dịch vụ</a> và <a href="#">Chính sách bảo mật</a></span>
             </label>
 
-            <button class="btn-place-order" onclick="placeOrder()">
+            <button class="btn-place-order" id="btnPlaceOrder" onclick="placeOrder()">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <rect x="3" y="11" width="18" height="11" rx="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
-                Đặt hàng — 4.950.000₫
+                Đặt hàng — <span id="btnTotal">@total.ToString("#,0")</span>₫
             </button>
 
             <div style="text-align:center;margin-top:8px;">
-                <a href="mura-cart.html" class="btn-back">← Quay lại giỏ hàng</a>
+                <a href="@Url.Action("Index","Cart")" class="btn-back">← Quay lại giỏ hàng</a>
             </div>
         </div>
 
@@ -362,98 +134,180 @@
     <div class="summary-panel">
         <h2 class="summary-panel-title">Đơn hàng của bạn</h2>
 
+        <!-- Danh sách sản phẩm từ Session -->
         <div class="order-items">
-            <div class="order-item">
-                <div class="order-item-img">
-                    <div style="width:38px;height:58px;background:#c8c4bc;border-radius:20px 20px 6px 6px;"></div>
-                    <span class="item-qty-badge">1</span>
+            @foreach (var item in cart)
+            {
+                <div class="order-item">
+                    <div class="order-item-img">
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@Url.Content("~/upload/product/" + item.ImageUrl)"
+                                 alt="@item.Name"
+                                 style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" />
+                        }
+                        else
+                        {
+                            <div style="width:100%;height:100%;background:#c8c4bc;border-radius:inherit;"></div>
+                        }
+                        <span class="item-qty-badge">@item.Quantity</span>
+                    </div>
+                    <div class="order-item-info">
+                        <div class="order-item-name">@item.Name</div>
+                        @if (!string.IsNullOrEmpty(item.Size))
+                        {
+                            <div class="order-item-meta">Size @item.Size</div>
+                        }
+                        <div class="order-item-meta">@item.Price.ToString("#,0")₫ / cái</div>
+                    </div>
+                    <div class="order-item-price">@item.Total.ToString("#,0")₫</div>
                 </div>
-                <div class="order-item-info">
-                    <div class="order-item-name">Cashmere Trench Coat</div>
-                    <div class="order-item-meta">Camel Stone · M</div>
-                </div>
-                <div class="order-item-price">2.890.000₫</div>
-            </div>
-
-            <div class="order-item">
-                <div class="order-item-img">
-                    <div style="width:35px;height:55px;background:#b8c4b8;border-radius:6px;"></div>
-                    <span class="item-qty-badge">1</span>
-                </div>
-                <div class="order-item-info">
-                    <div class="order-item-name">Midi Slip Dress Lụa</div>
-                    <div class="order-item-meta">Sage Green · S</div>
-                </div>
-                <div class="order-item-price">1.560.000₫</div>
-            </div>
-
-            <div class="order-item">
-                <div class="order-item-img">
-                    <div style="width:32px;height:48px;background:#bcbcb0;border-radius:12px;"></div>
-                    <span class="item-qty-badge">1</span>
-                </div>
-                <div class="order-item-info">
-                    <div class="order-item-name">Canvas Tote Bag</div>
-                    <div class="order-item-meta">Natural</div>
-                </div>
-                <div class="order-item-price">890.000₫</div>
-            </div>
+            }
         </div>
 
-        <!-- Coupon applied -->
-        <div class="coupon-applied">
-            <span>
-                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <polyline points="20 6 9 17 4 12" />
-                </svg>
-                MURA20 — Giảm 390.000₫
-            </span>
-            <button onclick="this.parentElement.remove()">Xóa</button>
+        <!-- Coupon đã áp dụng từ Session -->
+        @if (!string.IsNullOrEmpty(appliedCode) && discountAmt > 0)
+        {
+            <div class="coupon-applied" id="couponAppliedBadge">
+                <span>
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    @appliedCode — Giảm @discountAmt.ToString("#,0")₫
+                </span>
+            </div>
+        }
+
+        <!-- Tổng tiền -->
+        <div class="sum-row">
+            <span class="lbl">Tạm tính</span>
+            <span class="val">@subTotal.ToString("#,0")₫</span>
         </div>
 
-        <div class="sum-row"><span class="lbl">Tạm tính</span><span class="val">5.340.000₫</span></div>
-        <div class="sum-row"><span class="lbl">Mã giảm giá</span><span class="val discount">−390.000₫</span></div>
-        <div class="sum-row"><span class="lbl">Phí vận chuyển</span><span class="val free">Miễn phí</span></div>
-        <div class="sum-row"><span class="lbl">Thuế VAT (10%)</span><span class="val">Đã bao gồm</span></div>
+        @if (discountAmt > 0)
+        {
+            <div class="sum-row">
+                <span class="lbl">Mã giảm giá (@appliedCode)</span>
+                <span class="val discount">−@discountAmt.ToString("#,0")₫</span>
+            </div>
+        }
+
+        <div class="sum-row">
+            <span class="lbl">Phí vận chuyển</span>
+            <span class="val free">Miễn phí</span>
+        </div>
+        <div class="sum-row">
+            <span class="lbl">Thuế VAT (10%)</span>
+            <span class="val">Đã bao gồm</span>
+        </div>
 
         <hr class="sum-divider">
 
         <div class="sum-total-row">
             <span class="lbl">Tổng thanh toán</span>
-            <span class="val">4.950.000₫</span>
+            <span class="val">@total.ToString("#,0")₫</span>
         </div>
         <p class="sum-note">Đã bao gồm thuế VAT 10%</p>
-
-        <div class="delivery-estimate">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <rect x="1" y="3" width="15" height="13" />
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                <circle cx="5.5" cy="18.5" r="2.5" />
-                <circle cx="18.5" cy="18.5" r="2.5" />
-            </svg>
-            <p>Dự kiến giao hàng: <strong>20 – 22 tháng 5, 2026</strong><br>Giao hàng tiêu chuẩn miễn phí</p>
-        </div>
     </div>
 
 </div><!-- end checkout-layout -->
-<!-- SUCCESS MODAL -->
-<div class="modal-overlay" id="successModal">
-    <div class="modal">
-        <div class="modal-icon">
-            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <polyline points="20 6 9 17 4 12" />
-            </svg>
-        </div>
-        <p class="modal-label">Đặt hàng thành công</p>
-        <h2 class="modal-title">Cảm ơn bạn<br><em>đã tin tưởng MURA</em></h2>
-        <p class="modal-order-num">Mã đơn hàng: <strong>#MURA-2025-00847</strong></p>
-        <p class="modal-desc">
-            Chúng tôi đã gửi xác nhận đơn hàng đến email của bạn. Đơn hàng sẽ được xử lý và giao trong
-            vòng 3–5 ngày làm việc.
-        </p>
-        <div class="modal-actions">
-            <a href="shop-template.html" class="modal-btn-primary">Tiếp tục mua sắm</a>
-            <button class="modal-btn-secondary" onclick="closeModal()">Theo dõi đơn hàng</button>
-        </div>
-    </div>
-</div>
+<!-- ── HIDDEN FORM (submit thật về controller) ── -->
+<form id="orderForm" method="post" action="@Url.Action("Index","Checkout")" style="display:none;">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="name" id="hd-name" />
+    <input type="hidden" name="address" id="hd-address" />
+    <input type="hidden" name="email" id="hd-email" />
+    <input type="hidden" name="phone" id="hd-phone" />
+    <input type="hidden" name="subtotal" value="@subTotal" />
+    <input type="hidden" name="discount" value="@discountAmt" />
+    <input type="hidden" name="total" value="@total" />
+    <input type="hidden" name="paymentmethod" id="hd-paymentmethod" value="2" />
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let selectedPayment = 'vnpay';
+
+        window.selectPayment = function(method) {
+            selectedPayment = method;
+            document.getElementById('card-cod').classList.toggle('selected', method === 'cod');
+            document.getElementById('card-vnpay').classList.toggle('selected', method === 'vnpay');
+            document.getElementById('note-cod').style.display   = method === 'cod'   ? 'flex' : 'none';
+            document.getElementById('note-vnpay').style.display = method === 'vnpay' ? 'flex' : 'none';
+            // 1 = COD, 2 = VNPay (khớp với controller)
+            document.getElementById('hd-paymentmethod').value = method === 'cod' ? '1' : '2';
+        }
+
+        window.validateForm = function() {
+            let valid = true;
+
+            const fields = [
+                { id: 'inp-name',    errId: 'err-name',    check: v => v.trim().length >= 2 },
+                { id: 'inp-address', errId: 'err-address',  check: v => v.trim().length >= 5 },
+                { id: 'inp-email',   errId: 'err-email',    check: v => /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(v) },
+                { id: 'inp-phone',   errId: 'err-phone',    check: v => /^(0|\+84)[0-9]{9}$/.test(v.replace(/\s/g,'')) },
+            ];
+
+            fields.forEach(f => {
+                const el  = document.getElementById(f.id);
+                const err = document.getElementById(f.errId);
+
+                if (!el || !err) return;
+
+                const ok  = f.check(el.value);
+                el.classList.toggle('is-invalid', !ok);
+                err.style.display = ok ? 'none' : '';
+                if (!ok) valid = false;
+            });
+
+            if (!document.getElementById('agreeTerms').checked) {
+                alert('Vui lòng đồng ý với điều khoản dịch vụ.');
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        window.placeOrder = function() {
+            if (!validateForm()) return;
+
+            // Copy giá trị vào hidden form
+            document.getElementById('hd-name').value    = document.getElementById('inp-name').value.trim();
+            document.getElementById('hd-address').value = document.getElementById('inp-address').value.trim();
+            document.getElementById('hd-email').value   = document.getElementById('inp-email').value.trim();
+            document.getElementById('hd-phone').value   = document.getElementById('inp-phone').value.trim();
+
+            // Disable nút tránh double-submit
+            const btn = document.getElementById('btnPlaceOrder');
+            btn.disabled = true;
+            btn.innerHTML = '⏳ Đang xử lý...';
+
+            document.getElementById('orderForm').submit();
+        }
+
+        // Real-time email validation icon
+        document.getElementById('inp-email')?.addEventListener('input', function () {
+            const ok   = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(this.value);
+            const icon = document.getElementById('icon-email');
+            this.classList.toggle('success', ok);
+            icon.innerHTML = ok
+                ? `<svg width="16" height="16" fill="none" stroke="#1D9E75" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`
+                : '';
+        });
+    });
+</script>
+
+<style>
+    /* Validation states */
+    .field input.is-invalid {
+        border-color: #E24B4A !important;
+        background: #fff8f8;
+    }
+
+    .error-msg {
+        display: none;
+        font-size: 12px;
+        color: #E24B4A;
+        margin-top: 4px;
+    }
+</style>
