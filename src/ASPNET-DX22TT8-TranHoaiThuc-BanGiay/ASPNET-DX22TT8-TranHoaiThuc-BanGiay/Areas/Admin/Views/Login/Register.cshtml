@@ -1,0 +1,24 @@
+﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.UserModel
+@{
+    ViewData["Title"] = "Register";
+}
+<button class="icon-button theme-toggle auth-theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
+    <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+</button>
+<main class="auth-page">
+    <section class="auth-card">
+        <form class="needs-validation" novalidate asp-action="Register" method="post" asp-controller="Login">
+            <div class="mb-4">
+                <h1 class="h3 mb-1">Đăng Ký Tài Khoản</h1>
+            </div>
+            <div class="mb-3"><label class="form-label" for="registerName">Họ và tên</label><input class="form-control" id="registerName" type="text" required asp-for="Name"><div class="invalid-feedback">Họ và Tên là bắt buộc.</div></div>
+            <div class="mb-3"><label class="form-label" for="registerName">Số điện thoại</label><input class="form-control" id="registerPhone" type="text" asp-for="Phone"></div>
+            <div class="mb-3"><label class="form-label" for="registerEmail">Email </label><input class="form-control" id="registerEmail" type="email" required asp-for="Email"><div class="invalid-feedback">Email là bắt buộc</div></div>
+            <div class="mb-3"><label class="form-label" for="registerPassword">Password</label><input class="form-control" id="registerPassword" type="password" minlength="6" required asp-for="Password"><div class="invalid-feedback">Mật khẩu chưa đủ mạnh</div></div>
+            <div class="form-check mb-4"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label" for="terms">Tôi đã đọc và đồng ý với điều khoản</label><div class="invalid-feedback">Đồng ý với điều khoản đề tiếp tục!.</div></div>
+            <button class="btn btn-primary w-100" type="submit"><i class="bi bi-person-plus" aria-hidden="true"></i> Đăng ký ngay</button>
+        </form>
+
+        <div class="auth-footer">Bạn đã có tài khoản? <a href="/admin/dang-nhap">Đăng nhập ngay</a></div>
+    </section>
+</main>

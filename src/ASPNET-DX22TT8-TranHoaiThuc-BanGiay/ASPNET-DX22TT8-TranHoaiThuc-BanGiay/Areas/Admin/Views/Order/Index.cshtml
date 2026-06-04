@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.OrderModel>
+@{
+    ViewData["Title"] = "Order Admin";
+}
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <div>
+                    <h1 class="h3 mb-1">Đơn đặt hàng</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <a class="btn btn-primary btn-sm" href="/admin/don-hang/tao-moi">+ Thêm mới</a>
+                </div>
+                @* <input class="form-control form-control-sm table-search"
+                       type="search"
+                       placeholder="Search orders"
+                       data-table-search="ordersTable"
+                       aria-label="Search orders" /> *@
+            </div>
+            <div class="table-responsive">
+                <table class="table align-middle mb-0"
+                       id="ordersTable"
+                       data-searchable-table>
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Tên người đặt</th>
+                            <th>Số điện thoại</th>                            
+                            <th>Phương thức thanh toán</th>
+                            <th>Trạng thái</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td><a href="/admin/don-hang/cap-nhat/@order.Id"><strong>@order.OrderId</strong></a></td>
+                                <td><a href="/admin/don-hang/cap-nhat/@order.Id"><strong>@order.Name</strong></a></td>
+                                <td>@order.Phone</td>                                                                
+                                @if (order.PaymentMethod == 1)
+                                {
+                                    <td>COD</td>
+                                }                                
+                                else
+                                {
+                                    <td>VNPay</td>
+                                }
+                                @if (order.Status == 1)
+                                {
+                                    <td><span class="badge text-bg-warning">Chưa thanh toán</span></td>
+                                }
+                                else if (order.Status == 2)
+                                {
+                                    <td><span class="badge text-bg-success">Thanh toán thành công</span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="badge text-bg-danger">Thanh toán thất bại</span></td>
+                                }
+                                <td>@order.Total.ToString("#,0") đ</td>
+                                <td>
+                                    <a class="btn btn-light btn-sm" href="/admin/don-hang/cap-nhat/@order.Id"><i class="bx bx-pencil me-1"></i> Chi tiết</a>
+                                    <a class="btn btn-light btn-sm" href="@Url.Action("Delete", "Order", new { id = order.Id })"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                </td>
+                            </tr>
+                        }                        
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.VoucherModel>
+@{
+    ViewData["Title"] = "Voucher Admin";
+}
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <div>
+                    <h1 class="h3 mb-1">Quản lý mã giảm giá</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <a class="btn btn-primary btn-sm" href="/admin/ma-giam-gia/tao-moi">+ Thêm mới</a>
+                </div>
+                <@* div class="d-flex flex-wrap gap-2">
+                    <input class="form-control form-control-sm table-search" type="search" placeholder="Search users" data-table-search="usersTable" aria-label="Search users">                    
+                </div> *@
+            </div>
+            <div class="table-responsive">
+                <table class="table align-middle mb-0"
+                       id="ordersTable"
+                       data-searchable-table>
+                    <thead>
+                        <tr>
+                            <th>Mã giảm giá</th>
+                            <th>Thời gian có hiệu lực</th>
+                            <th>Trạng thái</th>
+                            <th class="text-end"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var voucher in Model)
+                        {
+                            <tr>
+                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <a href="/admin/ma-giam-gia/cap-nhat/@voucher.Id"><strong>@voucher.Code</strong></a></td>
+                                <td>@voucher.Date.ToString("dd/MM/yyyy")</td>
+                                <td><span class="badge text-bg-@(voucher.Status == 1 ? "success" : "danger")">@(voucher.Status == 1 ? "Mở" : "Đóng")</span></td>
+                                <td>
+                                    <a class="btn btn-light btn-sm" href="/admin/ma-giam-gia/cap-nhat/@voucher.Id">Chi tiết</a>
+                                    <a class="btn btn-light btn-sm" href="@Url.Action("Delete", "Voucher", new { id = voucher.Id })">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>

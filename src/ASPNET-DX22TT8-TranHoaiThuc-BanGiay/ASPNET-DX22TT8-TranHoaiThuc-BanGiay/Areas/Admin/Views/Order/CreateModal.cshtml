@@ -1,0 +1,34 @@
+﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.OrderDetailModel
+
+<div class="modal fade"
+     id="formModal"
+     tabindex="-1"
+     aria-labelledby="formModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form class="needs-validation" novalidate method="post" asp-controller="Order" asp-action="CreateModal" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="formModalLabel">
+                        Thêm chi tiết
+                    </h2>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="OrderId" id="orderIdDetail" value="" />
+                    <div class="col-md-12">
+                        <label class="form-label" for="formPlan">Giày</label>
+                        <select class="form-select" asp-for="ProductId" asp-items="ViewBag.products"></select>                        
+                    </div>
+                    <label class="form-label" for="formName">Số lượng</label><input class="form-control" id="formName" type="number" asp-for="Quantity" value="1"/>
+                </div>
+                <div class="modal-footer">                    
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

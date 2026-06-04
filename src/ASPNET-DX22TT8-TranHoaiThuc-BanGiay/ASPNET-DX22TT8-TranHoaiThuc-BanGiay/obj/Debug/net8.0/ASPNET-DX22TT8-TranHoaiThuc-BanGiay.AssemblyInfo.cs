@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASPNET-DX22TT8-TranHoaiThuc-BanGiay")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da76a149d171de5aab463c729d69e3c9d61c0652")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69fbcf3c3af5415a9a9c135812c4c9a738f2715c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASPNET-DX22TT8-TranHoaiThuc-BanGiay")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASPNET-DX22TT8-TranHoaiThuc-BanGiay")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

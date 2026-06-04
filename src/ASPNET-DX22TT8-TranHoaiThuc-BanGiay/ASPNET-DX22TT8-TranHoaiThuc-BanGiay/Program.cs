@@ -1,5 +1,43 @@
+﻿using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Libraries;
+using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Repository;
+using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Services;
+using ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Services.Vnpay;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5096")
+                .AllowAnyHeader()
+                .WithMethods("GET", "POST")
+                .AllowCredentials();
+        });
+});
+
+//Sendmail service
+builder.Services.AddScoped<EmailService>();
+//Connected db
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:DbConnection"]);
+});
+
+//Connect VNPayAPI
+builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<VnPayLibrary>();
+
+//Import Session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -13,6 +51,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -23,5 +62,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "Areas",
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.Run();

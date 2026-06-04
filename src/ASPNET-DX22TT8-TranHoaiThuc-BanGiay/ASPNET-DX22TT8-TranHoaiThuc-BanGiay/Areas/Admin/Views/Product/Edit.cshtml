@@ -1,0 +1,80 @@
+﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.ProductModel
+@{
+    ViewData["Title"] = "Edit Product Admin";    
+}
+<main class="dashboard-content">
+          <div class="container-fluid px-3 px-lg-4 py-4">
+            <div class="page-heading">
+              <div class="page-heading-copy">
+                <span class="page-icon"
+                  ><i class="bi bi-ui-checks-grid" aria-hidden="true"></i
+                ></span>
+                <div>
+                  <h1 class="h3 mb-1">Sửa giày</h1>
+                </div>
+              </div>
+            </div>
+
+            <section class="row g-3">
+              <div class="col-12 col-xl-12">
+                <form class="panel needs-validation" novalidate asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="formName">Tên giày</label>
+                            <input class="form-control" id="formName" required asp-for="Name" />
+                            <div class="invalid-feedback">Tên giày bắt buộc nhập</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleFormControlSelect1" class="form-label">Thương hiệu</label>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="select example" asp-for="CategoryId" asp-items="ViewBag.categories"></select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" asp-for="Description"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" asp-for="Content"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="formBudget">Số lượng</label>
+                            <input class="form-control" id="formBudget" type="number" min="1" required asp-for="Quantity" />
+                            <div class="invalid-feedback">Số lượng bắt buộc nhập.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="formBudget">Giá tiền</label>
+                            <input class="form-control" id="formBudget" type="number" min="1" required asp-for="Price" />
+                            <div class="invalid-feedback">Giá tiền bắt buộc nhập.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="formPlan">Trạng thái</label><select class="form-select" id="formPlan" required asp-for="Status">
+                                <option value="0">Tắt</option>
+                                <option value="1">Bật</option>
+                            </select>
+                            <div class="invalid-feedback">Chọn trạng thái.</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="formFile">Hình ảnh</label>
+                            <input class="form-control" type="file" id="formFile" asp-for="Image" />
+                            @if (!string.IsNullOrEmpty(@Model.ImageUrl))
+                            {       
+                                <div style="position: relative; margin: 10px">
+                                    <img src="@Url.Content("~/upload/product/" + @Model.ImageUrl)"
+                                         width="300"
+                                         height="300"
+                                         style="border: solid 2px #5ee1e6; border-radius: 15px" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-send" aria-hidden="true"></i> Lưu
+                        </button>
+                        <a href="/admin/san-pham" class="btn btn-outline-secondary">Quay về</a>
+                    </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </main>

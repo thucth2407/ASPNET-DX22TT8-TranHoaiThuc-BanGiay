@@ -1,0 +1,159 @@
+﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.OrderModel
+@{
+    ViewData["Title"] = "Edit Order Admin";    
+}
+
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <span class="page-icon">
+                    <i class="bi bi-ui-checks-grid" aria-hidden="true"></i>
+                </span>
+                <div>
+                    <h1 class="h3 mb-1">Sửa đơn đặt hàng</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="row g-3">
+            <div class="col-12 col-xl-12">
+                <form class="panel needs-validation" novalidate asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <div class="row g-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="formCode">Mã đơn</label>
+                            <input type="text" class="form-control" value="@Model.OrderId" readonly />
+                            <input type="hidden" asp-for="OrderId" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formName">Tên khách hàng</label>
+                            <input class="form-control" id="formName" type="text" asp-for="Name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formEmail">Email</label>
+                            <input class="form-control" id="formEmail" type="email" asp-for="Email" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formPhone">Số điện thoại</label>
+                            <input class="form-control" id="formPhone" type="text" asp-for="Phone" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formTotal">Tổng tiền</label>
+                            <input class="form-control" id="formTotal" type="text" asp-for="Total" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formPlan">Phương thức thanh toán</label>
+                            <select class="form-select" id="formPlan" asp-for="PaymentMethod" required>
+                                <option value="1">COD</option>
+                                <option value="2">VNPay</option>
+                            </select>
+                            <div class="invalid-feedback">Bạn chưa chọn phương thức thanh toán</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formPlan">Trạng thái</label>
+                            <select class="form-select" id="formPlan" asp-for="Status" required>
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="1">Chưa thanh toán</option>
+                                <option value="2">Đã thanh toán</option>
+                                <option value="3">Lỗi</option>
+                            </select>
+                            <div class="invalid-feedback">Bạn chưa chọn trạng thái</div>
+                        </div>
+                    </div>           
+                    <section class="panel mt-3">
+                        <div class="panel-header">
+                            <div>
+                                <h2 class="h5 mb-1 section-title">
+                                    <span>Chi tiết đơn hàng</span>
+                                </h2>
+                            </div>
+                            <button class="btn btn-outline-secondary"
+                                    type="button"
+                                    id="btnOpenCreateModel"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#formModal"
+                                    onclick="openCreateOrderDetail(@Model.Id)">
+                                Thêm giày vào đơn hàng
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                    
+                                    @foreach (var item in ViewBag.orderDetails)
+                                    {
+                                        <tr>
+                                            <td>@item.Product?.Name</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Total.ToString("#,0")</td>
+                                            <td>
+                                                <button class="btn btn-outline-secondary" type="button" data-id="item.Id" data-bs-toggle="modal" data-bs-target="#formEditModal" onclick="openPopupEditOrder(@item.Id, @item.ProductId, @item.Quantity, @item.Total)"> Sửa</button>                                                
+                                                <button type="button" class="btn btn-outline-secondary" data-request-success="window.location.reload()" data-request-confirm="Xóa bản ghi đã chọn ?" onclick="onDeleteOrderDetail(@item.Id)"> Xóa</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-send" aria-hidden="true"></i> Lưu
+                        </button>
+                        <a href="/admin/don-hang" class="btn btn-outline-secondary">Quay về</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
+
+@await Html.PartialAsync("EditModal", new OrderDetailModel())
+@await Html.PartialAsync("CreateModal", new ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.OrderDetailModel())
+
+<script>
+    window.onDeleteOrderDetail = function (id) {
+        fetch('/admin/don-hang/DeleteModal', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'Id=' + id
+        })
+        .then(res => res.json())
+        .then(() => window.location.reload());
+    }
+
+    // ✅ Chỉ giữ 1 hàm này, xóa hàm $.ajax phía dưới
+    window.openPopupEditOrder = function (id, productid, quantity, total) {
+        fetch(`/admin/don-hang/EditModal?Id=${id}&ProductId=${productid}&Quantity=${quantity}&Total=${total}`)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("orderid").value = data.id;
+            document.getElementById("quantityOrder").value = data.quantity;            
+
+                var select = document.getElementById("productIdOrder");
+    select.innerHTML = "";
+    data.products.forEach(item => {
+        // ✅ Ép cả 2 về string để so sánh
+        var isSelected = String(item.value) === String(data.productid);
+        var option = new Option(item.text, item.value, false, isSelected);
+        select.appendChild(option);
+    });
+    // ✅ Set lại value sau khi append xong
+    select.value = String(data.productid);
+
+            bootstrap.Modal.getOrCreateInstance(document.getElementById("formEditModal")).show();
+        });
+    }
+
+    document.getElementById("btnOpenCreateModel").addEventListener("click", () => {
+        document.getElementById("orderIdDetail").value = @Model.Id;
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("formModal")).show(); 
+    });
+</script>

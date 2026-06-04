@@ -1,0 +1,59 @@
+﻿@model ASPNET_DX22TT8_TranHoaiThuc_BanGiay.Models.UserModel
+@{
+    ViewData["Title"] = "Create Account";
+}
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <span class="page-icon">
+                    <i class="bi bi-ui-checks-grid" aria-hidden="true"></i>
+                </span>
+                <div>
+                    <h1 class="h3 mb-1">Thêm tài khoản</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="row g-3">
+            <div class="col-12 col-xl-12">
+                <form class="panel needs-validation" novalidate asp-action="Create" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label" for="formName">Họ và tên</label><input class="form-control" id="formName" required asp-for="Name" />
+                            <div class="invalid-feedback">Họ và tên là bắt buộc</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formEmail">Số điện thoại</label><input class="form-control" id="formPhone" type="text" asp-for="Phone"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formEmail">Email</label><input class="form-control" id="formEmail" type="email" required asp-for="Email" />
+                            <div class="invalid-feedback">
+                                Email là bắt buộc
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formEmail">Mật khẩu</label><input class="form-control" id="formPassword" type="password" required asp-for="Password" />
+                            <div class="invalid-feedback">
+                                Mật khẩu là bắt buộc
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="formPlan">Trạng thái</label><select class="form-select" id="formStatus" required asp-for="Actived">
+                                <option value="0">Tắt</option>
+                                <option value="1">Bật</option>
+                            </select>
+                            <div class="invalid-feedback">Chọn trạng thái</div>
+                        </div>                                             
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-send" aria-hidden="true"></i> Lưu 
+                        </button>
+                        <a href="/admin/tai-khoan" class="btn btn-outline-secondary">Quay về</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>

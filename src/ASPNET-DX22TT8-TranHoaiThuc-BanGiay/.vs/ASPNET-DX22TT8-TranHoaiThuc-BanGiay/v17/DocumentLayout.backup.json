@@ -1,7 +1,40 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\12 - ASP.NET\\Anh Ho\u00E0i Th\u1EE9c\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\order\\createmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\order\\createmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\order\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\order\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|d:\\12 - asp.net\\aspnet 2026\\aspnet-dx22tt8-tranhoaithuc-bangiay\\src\\aspnet-dx22tt8-tranhoaithuc-bangiay\\aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{768AAE21-6B87-48E9-8F10-BEFD1F108DB1}|ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj|solutionrelative:aspnet-dx22tt8-tranhoaithuc-bangiay\\areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +42,115 @@
       "DocumentGroups": [
         {
           "DockedHeight": 383,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T12:51:57.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\LoginController.cs",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T12:51:56.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VoucherController.cs",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\VoucherController.cs",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\VoucherController.cs",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\VoucherController.cs",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\VoucherController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T12:49:37.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateModal.cshtml",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\CreateModal.cshtml",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\CreateModal.cshtml",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\CreateModal.cshtml",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\CreateModal.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-03T12:30:41.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwD0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T12:27:00.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\Edit.cshtml",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\Edit.cshtml",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Order\\Edit.cshtml",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAmwBgAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-03T12:24:52.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAAwCQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T12:24:42.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-03T12:23:01.472Z",
+              "EditorCaption": ""
             }
           ]
         }

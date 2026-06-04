@@ -26,15 +26,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Libraries\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Repository\Components\" />
-    <Folder Include="Services\" />
-    <Folder Include="wwwroot\assets\admin\" />
-    <Folder Include="wwwroot\assets\mainsite\" />
+    <Folder Include="wwwroot\upload\product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\Login\Register.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

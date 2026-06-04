@@ -4697,11 +4697,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\12 - ASP.NET\\Anh Hoài Thức\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
+      "projectUniqueName": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
       "projectName": "ASPNET-DX22TT8-TranHoaiThuc-BanGiay",
-      "projectPath": "D:\\12 - ASP.NET\\Anh Hoài Thức\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
+      "projectPath": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
       "packagesPath": "C:\\Users\\XPS\\.nuget\\packages\\",
-      "outputPath": "D:\\12 - ASP.NET\\Anh Hoài Thức\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\obj\\",
+      "outputPath": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

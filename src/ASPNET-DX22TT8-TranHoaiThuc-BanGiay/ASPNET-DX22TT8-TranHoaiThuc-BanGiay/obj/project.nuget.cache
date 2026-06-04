@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gmI3InjYwac=",
+  "dgSpecHash": "IUFEB5TAJn8=",
   "success": true,
-  "projectFilePath": "D:\\12 - ASP.NET\\Anh Hoài Thức\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
+  "projectFilePath": "D:\\12 - ASP.NET\\ASPNET 2026\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\src\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay\\ASPNET-DX22TT8-TranHoaiThuc-BanGiay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\XPS\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\XPS\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

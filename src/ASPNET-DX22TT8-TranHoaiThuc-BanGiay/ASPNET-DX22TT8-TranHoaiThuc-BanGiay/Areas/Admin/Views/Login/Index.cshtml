@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Login Admin";
+}
+<main class="auth-page">
+    <section class="auth-card">
+        <form class="needs-validation" novalidate method="post" asp-action="Index">
+            <div class="mb-4">                
+                <h1 class="h3 mb-1">ĐĂNG NHẬP</h1>                
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="loginEmail">Tài khoản</label><input class="form-control" type="email" required id="username" name="username"><div class="invalid-feedback">Vui lòng nhập tài khoản.</div>
+            </div>
+            <div class="mb-3"><div class="d-flex justify-content-between"><label class="form-label" for="loginPassword">Mật khẩu</label><a class="small fw-semibold" href="/admin/quen-mat-khau">Quên mật khẩu?</a></div><input class="form-control" id="password" name="password" type="password" minlength="6" required><div class="invalid-feedback">Mật khẩu không hợp lệ!!</div></div>
+            <button class="btn btn-primary w-100" type="submit"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Đăng nhập ngay</button>
+        </form>
+
+        <div class="auth-footer">Bạn là người mới? <a href="/admin/dang-ky">Đăng kí tài khoản mới ngay!</a></div>
+    </section>
+</main>
